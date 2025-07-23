@@ -34,15 +34,27 @@ class Request {
     });
   }
 
-  Future<Response> getFileResponseForUrl(String url) async {
-    final response = await _clashDio.get(
-      url,
-      options: Options(
-        responseType: ResponseType.bytes,
-      ),
-    );
-    return response;
+  Future<Response<Uint8List>> getFileResponseForUrl(
+  String url, {
+  Map<String, dynamic>? headers,
+    }) async {
+  final Map<String, dynamic> requestHeaders = {
+    'User-Agent': 'FlClash',
+  };
+
+  if (headers != null) {
+    requestHeaders.addAll(headers);
   }
+
+  final response = await _dio.get<Uint8List>(
+    url,
+    options: Options(
+      responseType: ResponseType.bytes,
+      headers: requestHeaders,
+    ),
+  );
+  return response;
+}
 
   Future<Response> getTextResponseForUrl(String url) async {
     final response = await _clashDio.get(

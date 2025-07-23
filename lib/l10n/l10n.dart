@@ -74,6 +74,14 @@ class AppLocalizations {
   String get dashboard {
     return Intl.message('Dashboard', name: 'dashboard', desc: '', args: []);
   }
+  
+  /// `HWID sender`
+  String get settingsSendDeviceDataTitle {
+  return Intl.message('Send device data', name: 'settingsSendDeviceDataTitle');
+  }
+  String get settingsSendDeviceDataSubtitle {
+  return Intl.message('Includes sending HWID, model, and OS version', name: 'settingsSendDeviceDataSubtitle');
+  }
 
   /// `Proxies`
   String get proxies {

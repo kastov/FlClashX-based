@@ -650,6 +650,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "selected": MessageLookupByLibrary.simpleMessage("Выбрано"),
     "selectedCountTitle": m7,
     "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
+    "settingsSendDeviceDataTitle": MessageLookupByLibrary.simpleMessage("Отправлять данные об устройстве"),
+    "settingsSendDeviceDataSubtitle": MessageLookupByLibrary.simpleMessage("Включает отправку HWID, модели и версии ОС"),
     "show": MessageLookupByLibrary.simpleMessage("Показать"),
     "shrink": MessageLookupByLibrary.simpleMessage("Сжать"),
     "silentLaunch": MessageLookupByLibrary.simpleMessage("Тихий запуск"),
