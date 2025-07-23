@@ -92,7 +92,10 @@ class AppLocalizations {
   String get profile {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
   }
-
+  /// `Original Repository`
+  String get originalRepository {
+  return Intl.message('Original Repository', name: 'originalRepository', desc: '', args: []);
+  }
   /// `Profiles`
   String get profiles {
     return Intl.message('Profiles', name: 'profiles', desc: '', args: []);

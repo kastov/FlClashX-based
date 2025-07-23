@@ -1,44 +1,40 @@
 <div>
 
-[**简体中文**](README_zh_CN.md)
+[**English**](README_EN.md)
 
 </div>
 
-## FlClash
+## FlClashX
 
-[![Downloads](https://img.shields.io/github/downloads/chen08209/FlClash/total?style=flat-square&logo=github)](https://github.com/chen08209/FlClash/releases/)[![Last Version](https://img.shields.io/github/release/chen08209/FlClash/all.svg?style=flat-square)](https://github.com/chen08209/FlClash/releases/)[![License](https://img.shields.io/github/license/chen08209/FlClash?style=flat-square)](LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/pluralplay/FlClashX/total?style=flat-square&logo=github)](https://github.com/pluralplay/FlClashX/releases/)[![Last Version](https://img.shields.io/github/release/pluralplay/FlClashX/all.svg?style=flat-square)](https://github.com/pluralplay/FlClashX/releases/)[![License](https://img.shields.io/github/license/pluralplay/FlClashX?style=flat-square)](LICENSE)
 
-[![Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=flat-square&logo=telegram)](https://t.me/FlClash)
+[![Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=flat-square&logo=telegram)](https://t.me/FlClashX)
 
-A multi-platform proxy client based on ClashMeta, simple and easy to use, open-source and ad-free.
+Форк многоплатформенного прокси-клиента FlClash на основе ClashMeta, простого и удобного в использовании, с открытым исходным кодом и без рекламы.
 
-on Desktop:
+Десктопный вид:
 <p style="text-align: center;">
     <img alt="desktop" src="snapshots/desktop.gif">
 </p>
 
-on Mobile:
+Мобильный вид:
 <p style="text-align: center;">
     <img alt="mobile" src="snapshots/mobile.gif">
 </p>
 
-## Features
+## Добавленный функционал
 
-✈️ Multi-platform: Android, Windows, macOS and Linux
+✈️ Передача HWID в панель (Работает только с <a href="https://github.com/remnawave/panel">Remnawave</a>)
 
-💻 Adaptive multiple screen sizes, Multiple color themes available
+💻 Добавлен новый виджет "Анонсы". Передаёт анонсы из панели в виджет. (Работает только с <a href="https://github.com/remnawave/panel">Remnawave</a>)
 
-💡 Based on Material You Design, [Surfboard](https://github.com/getsurfboard/surfboard)-like UI
 
-☁️ Supports data sync via WebDAV
 
-✨ Support subscription link, Dark mode
-
-## Use
+## Использование
 
 ### Linux
 
-⚠️ Make sure to install the following dependencies before using them
+⚠️ Перед использованием убедитесь, что установлены следующие зависимости:
 
    ```bash
     sudo apt-get install libayatana-appindicator3-dev
@@ -47,7 +43,7 @@ on Mobile:
 
 ### Android
 
-Support the following actions
+Поддерживаются следующие действия:
 
    ```bash
     com.follow.clash.action.START
@@ -57,28 +53,28 @@ Support the following actions
     com.follow.clash.action.CHANGE
    ```
 
-## Download
+## Скачать
 
-<a href="https://chen08209.github.io/FlClash-fdroid-repo/repo?fingerprint=789D6D32668712EF7672F9E58DEEB15FBD6DCEEC5AE7A4371EA72F2AAE8A12FD"><img alt="Get it on F-Droid" src="snapshots/get-it-on-fdroid.svg" width="200px"/></a> <a href="https://github.com/chen08209/FlClash/releases"><img alt="Get it on GitHub" src="snapshots/get-it-on-github.svg" width="200px"/></a>
+<a href="https://github.com/pluralplay/FlClashX/releases"><img alt="Get it on GitHub" src="snapshots/get-it-on-github.svg" width="200px"/></a>
 
-## Build
+## Обновите подмодули:
 
 1. Update submodules
    ```bash
    git submodule update --init --recursive
    ```
 
-2. Install `Flutter` and `Golang` environment
+2. Установите `Flutter` и `Golang`
 
-3. Build Application
+3. Соберите приложение:
 
     - android
 
-        1. Install  `Android SDK` ,  `Android NDK`
+        1. Установите  `Android SDK` ,  `Android NDK`
 
-        2. Set `ANDROID_NDK` environment variables
+        2. Установите переменную окружения `ANDROID_NDK`
 
-        3. Run Build script
+        3. Запустите скрипт сборки:
 
            ```bash
            dart .\setup.dart android
@@ -86,11 +82,11 @@ Support the following actions
 
     - windows
 
-        1. You need a windows client
+        1. Требуется компьютер с Windows
 
-        2. Install  `Gcc`，`Inno Setup`
+        2. Установите   `Gcc` и `Inno Setup`
 
-        3. Run build script
+        3. Запустите скрипт сборки:
 
            ```bash
            dart .\setup.dart windows --arch <arm64 | amd64>
@@ -98,9 +94,9 @@ Support the following actions
 
     - linux
 
-        1. You need a linux client
+        1. Требуется компьютер с Linux.
 
-        2. Run build script
+        2. Запустите скрипт сборки:
 
            ```bash
            dart .\setup.dart linux --arch <arm64 | amd64>
@@ -108,9 +104,9 @@ Support the following actions
 
     - macOS
 
-        1. You need a macOS client
+        1. Требуется компьютер с macOS.
 
-        2. Run build script
+        2. Запустите скрипт сборки:
 
            ```bash
            dart .\setup.dart macos --arch <arm64 | amd64>
@@ -118,10 +114,10 @@ Support the following actions
 
 ## Star
 
-The easiest way to support developers is to click on the star (⭐) at the top of the page.
+Самый простой способ поддержать разработчиков — нажать на звездочку (⭐) в верхней части страницы.
 
 <p style="text-align: center;">
-    <a href="https://api.star-history.com/svg?repos=chen08209/FlClash&Date">
-        <img alt="start" width=50% src="https://api.star-history.com/svg?repos=chen08209/FlClash&Date"/>
-    </a>
+<a href="https://api.star-history.com/svg?repos=pluralplay/FlClashX&Date">
+<img alt="start" width=50% src="https://api.star-history.com/svg?repos=pluralplay/FlClashX&Date"/>
+</a>
 </p>

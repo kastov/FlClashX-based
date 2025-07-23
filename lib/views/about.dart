@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/providers/config.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/widgets/list.dart';
+import 'package:flclashx/common/common.dart';
+import 'package:flclashx/providers/config.dart';
+import 'package:flclashx/state.dart';
+import 'package:flclashx/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -51,7 +51,7 @@ class AboutView extends StatelessWidget {
           title: const Text("Telegram"),
           onTap: () {
             globalState.openUrl(
-              "https://t.me/FlClash",
+              "https://t.me/FlClashx",
             );
           },
           trailing: const Icon(Icons.launch),
@@ -65,6 +65,16 @@ class AboutView extends StatelessWidget {
           },
           trailing: const Icon(Icons.launch),
         ),
+        ListItem(
+          title: Text(appLocalizations.originalRepository),
+          onTap: () {
+            globalState.openUrl(
+              "https://github.com/chen08209/FlClash",
+            );
+          },
+          trailing: const Icon(Icons.launch),
+        ),
+        // --- КОНЕЦ ---
         ListItem(
           title: Text(appLocalizations.core),
           onTap: () {
@@ -81,14 +91,9 @@ class AboutView extends StatelessWidget {
   List<Widget> _buildContributorsSection() {
     const contributors = [
       Contributor(
-        avatar: "assets/images/avatars/june2.jpg",
-        name: "June2",
-        link: "https://t.me/Jibadong",
-      ),
-      Contributor(
-        avatar: "assets/images/avatars/arue.jpg",
-        name: "Arue",
-        link: "https://t.me/xrcm6868",
+        avatar: "assets/images/avatars/pluralplay.jpg",
+        name: "pluralplay",
+        link: "https://t.me/g33kar",
       ),
     ];
     return generateSection(
@@ -245,7 +250,7 @@ class _DeveloperModeDetectorState extends State<_DeveloperModeDetector> {
       _resetCounter();
     } else {
       _timer?.cancel();
-      _timer = Timer(Duration(seconds: 1), _resetCounter);
+      _timer = Timer(const Duration(seconds: 1), _resetCounter);
     }
   }
 

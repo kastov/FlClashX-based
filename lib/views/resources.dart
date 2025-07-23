@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:fl_clash/clash/clash.dart';
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/models/models.dart';
-import 'package:fl_clash/providers/config.dart';
-import 'package:fl_clash/state.dart';
-import 'package:fl_clash/widgets/widgets.dart';
+import 'package:flclashx/clash/clash.dart';
+import 'package:flclashx/common/common.dart';
+import 'package:flclashx/models/models.dart';
+import 'package:flclashx/providers/config.dart';
+import 'package:flclashx/state.dart';
+import 'package:flclashx/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart' hide context;

@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:fl_clash/common/common.dart';
-import 'package:fl_clash/state.dart';
+import 'package:flclashx/common/common.dart';
+import 'package:flclashx/state.dart';
 
 class FlClashHttpOverrides extends HttpOverrides {
   static String handleFindProxy(Uri url) {
