@@ -219,7 +219,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteMultipTip": m0,
     "deleteTip": m1,
     "desc": MessageLookupByLibrary.simpleMessage(
-      "Многоплатформенный прокси-клиент на основе ClashMeta, простой и удобный в использовании, с открытым исходным кодом и без рекламы.",
+      "Форк многоплатформенного прокси-клиента FlClash на основе ClashMeta, простой и удобный в использовании, с открытым исходным кодом и без рекламы.",
     ),
     "detectionTip": MessageLookupByLibrary.simpleMessage(
       "Опирается на сторонний API, только для справки",
@@ -480,6 +480,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "otherContributors": MessageLookupByLibrary.simpleMessage(
       "Другие участники",
     ),
+    "originalRepository": MessageLookupByLibrary.simpleMessage("Оригинальный репозиторий"),
     "outboundMode": MessageLookupByLibrary.simpleMessage(
       "Исходящий режим",
     ),

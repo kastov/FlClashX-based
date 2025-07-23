@@ -11,12 +11,12 @@ essential: false
 icon: ./assets/images/icon.png
 
 keywords:
-  - FlClash
+  - FlClashX
   - Clash
   - ClashMeta
   - Proxy
 
-generic_name: FlClash
+generic_name: FlClashX
 
 group: Applications/Internet
 

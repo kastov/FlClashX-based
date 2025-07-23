@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:fl_clash/plugins/app.dart';
-import 'package:fl_clash/state.dart';
+import 'package:flclashx/plugins/app.dart';
+import 'package:flclashx/state.dart';
 
 class Android {
   init() async {
