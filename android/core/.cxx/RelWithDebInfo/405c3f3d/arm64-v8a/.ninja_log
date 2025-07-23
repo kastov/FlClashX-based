@@ -1,4 +1,15 @@
 # ninja log v5
-5	157	7749990166375407	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
 0	158	7749990166375407	CMakeFiles/core.dir/jni_helper.cpp.o	6bd93db59587dd14
+5	157	7749990166375407	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
 158	337	7749990168151123	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+8	202	7750007057677113	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
+202	436	7750007059980132	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+2	54	7750011994043093	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
+54	144	7750011994912939	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+2	48	7750014629211089	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
+48	133	7750014630023562	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+1	80	7750021789516721	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+2	78	7750032469376176	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+1	78	7750035214961054	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+1	120	7750051934352558	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+1	92	7750055057087997	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
