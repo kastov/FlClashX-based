@@ -7,11 +7,17 @@ import 'package:fl_clash/clash/core.dart';
 import 'package:fl_clash/common/common.dart';
 import 'package:fl_clash/enum/enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:fl_clash/utils/device_info_service.dart';
 
 import 'clash_config.dart';
 
 part 'generated/profile.freezed.dart';
 part 'generated/profile.g.dart';
+
+class DeviceLimitExceededException implements Exception {
+  final String message;
+  DeviceLimitExceededException(this.message);
+}
 
 typedef SelectedMap = Map<String, String>;
 
@@ -50,6 +56,7 @@ class Profile with _$Profile {
     required String id,
     String? label,
     String? currentGroupName,
+    String? announceText,
     @Default("") String url,
     DateTime? lastUpdateDate,
     required Duration autoUpdateDuration,
@@ -167,14 +174,41 @@ extension ProfileExtension on Profile {
     return (await file.lastModified()).microsecondsSinceEpoch;
   }
 
-  Future<Profile> update() async {
-    final response = await request.getFileResponseForUrl(url);
+  Future<Profile> update({bool shouldSendHeaders = true}) async {
+    final Map<String, dynamic> headers = {};
+
+    if (shouldSendHeaders) {
+      final deviceInfoService = DeviceInfoService();
+      final details = await deviceInfoService.getDeviceDetails();
+
+      if (details.hwid != null) headers['x-hwid'] = details.hwid;
+      if (details.os != null) headers['x-device-os'] = details.os;
+      if (details.osVersion != null) headers['x-ver-os'] = details.osVersion;
+      if (details.model != null) headers['x-device-model'] = details.model;
+      if (details.appVersion != null && details.os != null) {
+        headers['User-Agent'] = 'FlClashX/${details.appVersion} Platform/${details.os}';
+      }
+    }
+
+    final response = await request.getFileResponseForUrl(
+      url,
+      headers: headers.isNotEmpty ? headers : null,
+    );
+
     final disposition = response.headers.value("content-disposition");
     final userinfo = response.headers.value('subscription-userinfo');
+    final announce = response.headers.value('announce');
+
+    final responseData = response.data;
+    if (responseData == null) {
+      throw Exception("Failed to get profile data from response.");
+    }
+
     return await copyWith(
       label: label ?? utils.getFileNameForDisposition(disposition) ?? id,
       subscriptionInfo: SubscriptionInfo.formHString(userinfo),
-    ).saveFile(response.data);
+      announceText: announce,
+    ).saveFile(responseData);
   }
 
   Future<Profile> saveFile(Uint8List bytes) async {

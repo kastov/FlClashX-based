@@ -324,9 +324,9 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       @JsonKey(fromJson: dashboardWidgetsSafeFormJson)
       final List<DashboardWidget> dashboardWidgets = defaultDashboardWidgets,
       this.onlyStatisticsProxy = false,
-      this.autoLaunch = false,
+      this.autoLaunch = true,
       this.silentLaunch = false,
-      this.autoRun = false,
+      this.autoRun = true,
       this.openLogs = false,
       this.closeConnections = true,
       this.testUrl = defaultTestUrl,
@@ -1221,8 +1221,8 @@ class __$$VpnPropsImplCopyWithImpl<$Res>
 class _$VpnPropsImpl implements _VpnProps {
   const _$VpnPropsImpl(
       {this.enable = true,
-      this.systemProxy = true,
-      this.ipv6 = false,
+      this.systemProxy = false,
+      this.ipv6 = true,
       this.allowBypass = true,
       this.accessControl = defaultAccessControl});
 
@@ -1449,7 +1449,7 @@ class __$$NetworkPropsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$NetworkPropsImpl implements _NetworkProps {
   const _$NetworkPropsImpl(
-      {this.systemProxy = true,
+      {this.systemProxy = false,
       final List<String> bypassDomain = defaultBypassDomain,
       this.routeMode = RouteMode.config,
       this.autoSetSystemDns = true})

@@ -6,6 +6,7 @@ import 'package:fl_clash/state.dart';
 import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogLevelItem extends ConsumerWidget {
   const LogLevelItem({super.key});
@@ -241,6 +242,54 @@ class HostsItem extends StatelessWidget {
   }
 }
 
+class SendHeadersToggle extends StatefulWidget {
+  const SendHeadersToggle({super.key});
+
+  @override
+  State<SendHeadersToggle> createState() => _SendHeadersToggleState();
+}
+
+class _SendHeadersToggleState extends State<SendHeadersToggle> {
+  static const _preferenceKey = 'sendDeviceHeaders';
+  bool _sendHeaders = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPreference();
+  }
+
+  Future<void> _loadPreference() async {
+    final prefs = await SharedPreferences.getInstance();
+    if (mounted) {
+      setState(() {
+        _sendHeaders = prefs.getBool(_preferenceKey) ?? true;
+      });
+    }
+  }
+
+  Future<void> _updatePreference(bool value) async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool(_preferenceKey, value);
+    setState(() {
+      _sendHeaders = value;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return ListItem.switchItem(
+      leading: const Icon(Icons.perm_device_information_outlined),
+      title: Text(appLocalizations.settingsSendDeviceDataTitle),
+      subtitle: Text(appLocalizations.settingsSendDeviceDataSubtitle),
+      delegate: SwitchDelegate(
+        value: _sendHeaders,
+        onChanged: _updatePreference,
+      ),
+    );
+  }
+}
+
 class Ipv6Item extends ConsumerWidget {
   const Ipv6Item({super.key});
 
@@ -430,6 +479,7 @@ final generalItems = <Widget>[
   TestUrlItem(),
   PortItem(),
   HostsItem(),
+  const SendHeadersToggle(),
   Ipv6Item(),
   AllowLanItem(),
   UnifiedDelayItem(),

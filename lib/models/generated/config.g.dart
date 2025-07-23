@@ -14,9 +14,9 @@ _$AppSettingPropsImpl _$$AppSettingPropsImplFromJson(
           ? defaultDashboardWidgets
           : dashboardWidgetsSafeFormJson(json['dashboardWidgets'] as List?),
       onlyStatisticsProxy: json['onlyStatisticsProxy'] as bool? ?? false,
-      autoLaunch: json['autoLaunch'] as bool? ?? false,
+      autoLaunch: json['autoLaunch'] as bool? ?? true,
       silentLaunch: json['silentLaunch'] as bool? ?? false,
-      autoRun: json['autoRun'] as bool? ?? false,
+      autoRun: json['autoRun'] as bool? ?? true,
       openLogs: json['openLogs'] as bool? ?? false,
       closeConnections: json['closeConnections'] as bool? ?? true,
       testUrl: json['testUrl'] as String? ?? defaultTestUrl,
@@ -66,6 +66,7 @@ const _$DashboardWidgetEnumMap = {
   DashboardWidget.outboundModeV2: 'outboundModeV2',
   DashboardWidget.outboundMode: 'outboundMode',
   DashboardWidget.trafficUsage: 'trafficUsage',
+  DashboardWidget.announce: 'announce',
   DashboardWidget.networkDetection: 'networkDetection',
   DashboardWidget.tunButton: 'tunButton',
   DashboardWidget.vpnButton: 'vpnButton',
@@ -134,8 +135,8 @@ Map<String, dynamic> _$$WindowPropsImplToJson(_$WindowPropsImpl instance) =>
 _$VpnPropsImpl _$$VpnPropsImplFromJson(Map<String, dynamic> json) =>
     _$VpnPropsImpl(
       enable: json['enable'] as bool? ?? true,
-      systemProxy: json['systemProxy'] as bool? ?? true,
-      ipv6: json['ipv6'] as bool? ?? false,
+      systemProxy: json['systemProxy'] as bool? ?? false,
+      ipv6: json['ipv6'] as bool? ?? true,
       allowBypass: json['allowBypass'] as bool? ?? true,
       accessControl: json['accessControl'] == null
           ? defaultAccessControl
@@ -154,7 +155,7 @@ Map<String, dynamic> _$$VpnPropsImplToJson(_$VpnPropsImpl instance) =>
 
 _$NetworkPropsImpl _$$NetworkPropsImplFromJson(Map<String, dynamic> json) =>
     _$NetworkPropsImpl(
-      systemProxy: json['systemProxy'] as bool? ?? true,
+      systemProxy: json['systemProxy'] as bool? ?? false,
       bypassDomain: (json['bypassDomain'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??

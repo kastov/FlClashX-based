@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'common/common.dart';
 import 'models/models.dart';
@@ -162,14 +163,18 @@ class AppController {
   }
 
   Future<void> updateProfile(Profile profile) async {
-    final newProfile = await profile.update();
-    _ref
-        .read(profilesProvider.notifier)
-        .setProfile(newProfile.copyWith(isUpdating: false));
-    if (profile.id == _ref.read(currentProfileIdProvider)) {
-      applyProfileDebounce(silence: true);
-    }
+  final prefs = await SharedPreferences.getInstance();
+  final shouldSend = prefs.getBool('sendDeviceHeaders') ?? true;
+  final newProfile = await profile.update(
+    shouldSendHeaders: shouldSend,
+  );
+  _ref
+      .read(profilesProvider.notifier)
+      .setProfile(newProfile.copyWith(isUpdating: false));
+  if (profile.id == _ref.read(currentProfileIdProvider)) {
+    applyProfileDebounce(silence: true);
   }
+}
 
   setProfile(Profile profile) {
     _ref.read(profilesProvider.notifier).setProfile(profile);
@@ -664,24 +669,26 @@ class AppController {
   }
 
   addProfileFormURL(String url) async {
-    if (globalState.navigatorKey.currentState?.canPop() ?? false) {
-      globalState.navigatorKey.currentState?.popUntil((route) => route.isFirst);
-    }
-    toProfiles();
-    final commonScaffoldState = globalState.homeScaffoldKey.currentState;
-    if (commonScaffoldState?.mounted != true) return;
-    final profile = await commonScaffoldState?.loadingRun<Profile>(
-      () async {
-        return await Profile.normal(
-          url: url,
-        ).update();
-      },
-      title: "${appLocalizations.add}${appLocalizations.profile}",
-    );
-    if (profile != null) {
-      await addProfile(profile);
-    }
+  if (globalState.navigatorKey.currentState?.canPop() ?? false) {
+    globalState.navigatorKey.currentState?.popUntil((route) => route.isFirst);
   }
+  toProfiles();
+  final commonScaffoldState = globalState.homeScaffoldKey.currentState;
+  if (commonScaffoldState?.mounted != true) return;
+  final profile = await commonScaffoldState?.loadingRun<Profile>(
+    () async {
+      final prefs = await SharedPreferences.getInstance();
+      final shouldSend = prefs.getBool('sendDeviceHeaders') ?? true;
+      return await Profile.normal(
+        url: url,
+      ).update(shouldSendHeaders: shouldSend);
+    },
+    title: "${appLocalizations.add}${appLocalizations.profile}",
+  );
+  if (profile != null) {
+    await addProfile(profile);
+  }
+}
 
   addProfileFormFile() async {
     final platformFile = await globalState.safeRun(picker.pickerFile);
