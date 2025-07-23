@@ -1441,7 +1441,7 @@ class __$$TunImplCopyWithImpl<$Res> extends _$TunCopyWithImpl<$Res, _$TunImpl>
 @JsonSerializable()
 class _$TunImpl implements _Tun {
   const _$TunImpl(
-      {this.enable = false,
+      {this.enable = true,
       this.device = appName,
       @JsonKey(name: "auto-route") this.autoRoute = false,
       this.stack = TunStack.mixed,
@@ -2158,7 +2158,7 @@ class _$DnsImpl implements _Dns {
       @JsonKey(name: "use-hosts") this.useHosts = true,
       @JsonKey(name: "use-system-hosts") this.useSystemHosts = true,
       @JsonKey(name: "respect-rules") this.respectRules = false,
-      this.ipv6 = false,
+      this.ipv6 = true,
       @JsonKey(name: "default-nameserver")
       final List<String> defaultNameserver = const ["223.5.5.5"],
       @JsonKey(name: "enhanced-mode") this.enhancedMode = DnsMode.fakeIp,
@@ -3921,10 +3921,10 @@ class _$ClashConfigImpl implements _ClashConfig {
       this.mode = Mode.rule,
       @JsonKey(name: "allow-lan") this.allowLan = false,
       @JsonKey(name: "log-level") this.logLevel = LogLevel.error,
-      this.ipv6 = false,
+      this.ipv6 = true,
       @JsonKey(
           name: "find-process-mode", unknownEnumValue: FindProcessMode.always)
-      this.findProcessMode = FindProcessMode.off,
+      this.findProcessMode = FindProcessMode.always,
       @JsonKey(name: "keep-alive-interval")
       this.keepAliveInterval = defaultKeepAliveInterval,
       @JsonKey(name: "unified-delay") this.unifiedDelay = true,

@@ -41,13 +41,8 @@ final defaultThemeProps = ThemeProps(
 );
 
 const List<DashboardWidget> defaultDashboardWidgets = [
-  DashboardWidget.networkSpeed,
-  DashboardWidget.systemProxyButton,
-  DashboardWidget.tunButton,
-  DashboardWidget.outboundMode,
-  DashboardWidget.networkDetection,
-  DashboardWidget.trafficUsage,
-  DashboardWidget.intranetIp,
+  DashboardWidget.announce,
+  DashboardWidget.outboundModeV2,
 ];
 
 List<DashboardWidget> dashboardWidgetsSafeFormJson(
@@ -71,9 +66,9 @@ class AppSettingProps with _$AppSettingProps {
     @JsonKey(fromJson: dashboardWidgetsSafeFormJson)
     List<DashboardWidget> dashboardWidgets,
     @Default(false) bool onlyStatisticsProxy,
-    @Default(false) bool autoLaunch,
+    @Default(true) bool autoLaunch,
     @Default(false) bool silentLaunch,
-    @Default(false) bool autoRun,
+    @Default(true) bool autoRun,
     @Default(false) bool openLogs,
     @Default(true) bool closeConnections,
     @Default(defaultTestUrl) String testUrl,
@@ -137,8 +132,8 @@ class WindowProps with _$WindowProps {
 class VpnProps with _$VpnProps {
   const factory VpnProps({
     @Default(true) bool enable,
-    @Default(true) bool systemProxy,
-    @Default(false) bool ipv6,
+    @Default(false) bool systemProxy,
+    @Default(true) bool ipv6,
     @Default(true) bool allowBypass,
     @Default(defaultAccessControl) AccessControl accessControl,
   }) = _VpnProps;
@@ -150,7 +145,7 @@ class VpnProps with _$VpnProps {
 @freezed
 class NetworkProps with _$NetworkProps {
   const factory NetworkProps({
-    @Default(true) bool systemProxy,
+    @Default(false) bool systemProxy,
     @Default(defaultBypassDomain) List<String> bypassDomain,
     @Default(RouteMode.config) RouteMode routeMode,
     @Default(true) bool autoSetSystemDns,

@@ -7,6 +7,8 @@ import 'package:fl_clash/widgets/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
+import 'package:fl_clash/views/dashboard/widgets/announce_widget.dart';
+
 
 enum SupportPlatform {
   Windows,
@@ -345,6 +347,12 @@ enum DashboardWidget {
     GridItem(
       crossAxisCellCount: 4,
       child: TrafficUsage(),
+    ),
+  ),
+  announce( // <-- НАШ НОВЫЙ ВИДЖЕТ
+    GridItem(
+      crossAxisCellCount: 8,
+      child: AnnounceWidget(),
     ),
   ),
   networkDetection(

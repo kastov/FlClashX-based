@@ -14,6 +14,11 @@ import 'clash_config.dart';
 part 'generated/profile.freezed.dart';
 part 'generated/profile.g.dart';
 
+class DeviceLimitExceededException implements Exception {
+  final String message;
+  DeviceLimitExceededException(this.message);
+}
+
 typedef SelectedMap = Map<String, String>;
 
 @freezed
@@ -51,6 +56,7 @@ class Profile with _$Profile {
     required String id,
     String? label,
     String? currentGroupName,
+    String? announceText,
     @Default("") String url,
     DateTime? lastUpdateDate,
     required Duration autoUpdateDuration,
@@ -191,6 +197,7 @@ extension ProfileExtension on Profile {
 
     final disposition = response.headers.value("content-disposition");
     final userinfo = response.headers.value('subscription-userinfo');
+    final announce = response.headers.value('announce');
 
     final responseData = response.data;
     if (responseData == null) {
@@ -200,6 +207,7 @@ extension ProfileExtension on Profile {
     return await copyWith(
       label: label ?? utils.getFileNameForDisposition(disposition) ?? id,
       subscriptionInfo: SubscriptionInfo.formHString(userinfo),
+      announceText: announce,
     ).saveFile(responseData);
   }
 

@@ -231,6 +231,7 @@ mixin _$Profile {
   String get id => throw _privateConstructorUsedError;
   String? get label => throw _privateConstructorUsedError;
   String? get currentGroupName => throw _privateConstructorUsedError;
+  String? get announceText => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   DateTime? get lastUpdateDate => throw _privateConstructorUsedError;
   Duration get autoUpdateDuration => throw _privateConstructorUsedError;
@@ -260,6 +261,7 @@ abstract class $ProfileCopyWith<$Res> {
       {String id,
       String? label,
       String? currentGroupName,
+      String? announceText,
       String url,
       DateTime? lastUpdateDate,
       Duration autoUpdateDuration,
@@ -292,6 +294,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? id = null,
     Object? label = freezed,
     Object? currentGroupName = freezed,
+    Object? announceText = freezed,
     Object? url = null,
     Object? lastUpdateDate = freezed,
     Object? autoUpdateDuration = null,
@@ -314,6 +317,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       currentGroupName: freezed == currentGroupName
           ? _value.currentGroupName
           : currentGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      announceText: freezed == announceText
+          ? _value.announceText
+          : announceText // ignore: cast_nullable_to_non_nullable
               as String?,
       url: null == url
           ? _value.url
@@ -390,6 +397,7 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       {String id,
       String? label,
       String? currentGroupName,
+      String? announceText,
       String url,
       DateTime? lastUpdateDate,
       Duration autoUpdateDuration,
@@ -422,6 +430,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? id = null,
     Object? label = freezed,
     Object? currentGroupName = freezed,
+    Object? announceText = freezed,
     Object? url = null,
     Object? lastUpdateDate = freezed,
     Object? autoUpdateDuration = null,
@@ -444,6 +453,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
       currentGroupName: freezed == currentGroupName
           ? _value.currentGroupName
           : currentGroupName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      announceText: freezed == announceText
+          ? _value.announceText
+          : announceText // ignore: cast_nullable_to_non_nullable
               as String?,
       url: null == url
           ? _value.url
@@ -492,6 +505,7 @@ class _$ProfileImpl implements _Profile {
       {required this.id,
       this.label,
       this.currentGroupName,
+      this.announceText,
       this.url = "",
       this.lastUpdateDate,
       required this.autoUpdateDuration,
@@ -514,6 +528,8 @@ class _$ProfileImpl implements _Profile {
   final String? label;
   @override
   final String? currentGroupName;
+  @override
+  final String? announceText;
   @override
   @JsonKey()
   final String url;
@@ -553,7 +569,7 @@ class _$ProfileImpl implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(id: $id, label: $label, currentGroupName: $currentGroupName, url: $url, lastUpdateDate: $lastUpdateDate, autoUpdateDuration: $autoUpdateDuration, subscriptionInfo: $subscriptionInfo, autoUpdate: $autoUpdate, selectedMap: $selectedMap, unfoldSet: $unfoldSet, overrideData: $overrideData, isUpdating: $isUpdating)';
+    return 'Profile(id: $id, label: $label, currentGroupName: $currentGroupName, announceText: $announceText, url: $url, lastUpdateDate: $lastUpdateDate, autoUpdateDuration: $autoUpdateDuration, subscriptionInfo: $subscriptionInfo, autoUpdate: $autoUpdate, selectedMap: $selectedMap, unfoldSet: $unfoldSet, overrideData: $overrideData, isUpdating: $isUpdating)';
   }
 
   @override
@@ -565,6 +581,8 @@ class _$ProfileImpl implements _Profile {
             (identical(other.label, label) || other.label == label) &&
             (identical(other.currentGroupName, currentGroupName) ||
                 other.currentGroupName == currentGroupName) &&
+            (identical(other.announceText, announceText) ||
+                other.announceText == announceText) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.lastUpdateDate, lastUpdateDate) ||
                 other.lastUpdateDate == lastUpdateDate) &&
@@ -591,6 +609,7 @@ class _$ProfileImpl implements _Profile {
       id,
       label,
       currentGroupName,
+      announceText,
       url,
       lastUpdateDate,
       autoUpdateDuration,
@@ -622,6 +641,7 @@ abstract class _Profile implements Profile {
       {required final String id,
       final String? label,
       final String? currentGroupName,
+      final String? announceText,
       final String url,
       final DateTime? lastUpdateDate,
       required final Duration autoUpdateDuration,
@@ -641,6 +661,8 @@ abstract class _Profile implements Profile {
   String? get label;
   @override
   String? get currentGroupName;
+  @override
+  String? get announceText;
   @override
   String get url;
   @override
