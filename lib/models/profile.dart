@@ -58,6 +58,7 @@ class Profile with _$Profile {
     String? label,
     String? currentGroupName,
     String? announceText,
+    @Default(false) bool hideMode,
     @Default("") String url,
     DateTime? lastUpdateDate,
     required Duration autoUpdateDuration,
@@ -196,6 +197,7 @@ extension ProfileExtension on Profile {
     final disposition = response.headers.value("content-disposition");
     final userinfo = response.headers.value('subscription-userinfo');
     final announce = response.headers.value('announce');
+    final hideModeHeader = response.headers.value('hidemode');
 
     final responseData = response.data;
     if (responseData == null) {
@@ -206,6 +208,7 @@ extension ProfileExtension on Profile {
       label: label ?? utils.getFileNameForDisposition(disposition) ?? id,
       subscriptionInfo: SubscriptionInfo.formHString(userinfo),
       announceText: announce,
+      hideMode: hideModeHeader == 'true'
     ).saveFile(responseData);
   }
 
