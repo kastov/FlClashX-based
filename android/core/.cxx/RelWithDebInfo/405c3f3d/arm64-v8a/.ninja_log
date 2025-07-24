@@ -1,8 +1,6 @@
 # ninja log v5
-0	89	7750229997311708	CMakeFiles/core.dir/jni_helper.cpp.o	6bd93db59587dd14
-5	90	7750229997311708	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
-90	330	7750229999679765	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
-0	7	0	clean	3fe20a6a79bad2
-1	104	7750260624242097	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
-6	105	7750260624242097	CMakeFiles/core.dir/jni_helper.cpp.o	6bd93db59587dd14
-105	334	7750260626530824	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+6	100	7750326340698155	CMakeFiles/core.dir/core.cpp.o	440eb33b9235e4d8
+0	196	7750326340942953	CMakeFiles/core.dir/jni_helper.cpp.o	6bd93db59587dd14
+196	286	7750326342529524	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+2	243	7750332790184513	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0
+1	83	7750338272357521	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/arm64-v8a/libcore.so	3ff398a8fd99fec0

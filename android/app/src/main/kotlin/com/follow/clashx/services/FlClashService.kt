@@ -11,7 +11,7 @@ import com.follow.clashx.GlobalState
 import com.follow.clashx.models.VpnOptions
 
 
-class FlClashService : Service(), BaseServiceInterface {
+class FlClashXService : Service(), BaseServiceInterface {
 
     override fun start(options: VpnOptions) = 0
 
@@ -26,7 +26,7 @@ class FlClashService : Service(), BaseServiceInterface {
 
     private suspend fun notificationBuilder(): NotificationCompat.Builder {
         if (cachedBuilder == null) {
-            cachedBuilder = createFlClashNotificationBuilder().await()
+            cachedBuilder = createFlClashXNotificationBuilder().await()
         }
         return cachedBuilder!!
     }
@@ -49,7 +49,7 @@ class FlClashService : Service(), BaseServiceInterface {
     private val binder = LocalBinder()
 
     inner class LocalBinder : Binder() {
-        fun getService(): FlClashService = this@FlClashService
+        fun getService(): FlClashXService = this@FlClashXService
     }
 
     override fun onBind(intent: Intent): IBinder {

@@ -3,9 +3,9 @@ package com.follow.clashx;
 import android.app.Application
 import android.content.Context
 
-class FlClashApplication : Application() {
+class FlClashXApplication : Application() {
     companion object {
-        private lateinit var instance: FlClashApplication
+        private lateinit var instance: FlClashXApplication
         fun getAppContext(): Context {
             return instance.applicationContext
         }

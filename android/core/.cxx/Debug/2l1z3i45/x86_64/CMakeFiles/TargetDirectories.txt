@@ -1,3 +1,0 @@
-F:/WORK/Coding/GitHub/FlClashX/android/core/.cxx/Debug/2l1z3i45/x86_64/CMakeFiles/core.dir
-F:/WORK/Coding/GitHub/FlClashX/android/core/.cxx/Debug/2l1z3i45/x86_64/CMakeFiles/edit_cache.dir
-F:/WORK/Coding/GitHub/FlClashX/android/core/.cxx/Debug/2l1z3i45/x86_64/CMakeFiles/rebuild_cache.dir
