@@ -1,3 +1,0 @@
-F:/WORK/Coding/GitHub/FlClashX/android/core/.cxx/RelWithDebInfo/405c3f3d/x86/CMakeFiles/core.dir
-F:/WORK/Coding/GitHub/FlClashX/android/core/.cxx/RelWithDebInfo/405c3f3d/x86/CMakeFiles/edit_cache.dir
-F:/WORK/Coding/GitHub/FlClashX/android/core/.cxx/RelWithDebInfo/405c3f3d/x86/CMakeFiles/rebuild_cache.dir
