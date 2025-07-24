@@ -117,7 +117,5 @@
 Самый простой способ поддержать разработчиков — нажать на звездочку (⭐) в верхней части страницы.
 
 <p style="text-align: center;">
-<a href="https://api.star-history.com/svg?repos=pluralplay/FlClashX&Date">
-<img alt="start" width=50% src="https://api.star-history.com/svg?repos=pluralplay/FlClashX&Date"/>
-</a>
+Если хотите поддержать копеечкой, то можно <a href="https://t.me/tribute/app?startapp=dtyh>сюда</a>
 </p>
