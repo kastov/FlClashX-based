@@ -114,8 +114,4 @@ Support the following actions
 
 The easiest way to support developers is to click on the star (⭐) at the top of the page.
 
-<p style="text-align: center;">
-    <a href="https://api.star-history.com/svg?repos=pluralplay/FlClashX&Date">
-        <img alt="start" width=50% src="https://api.star-history.com/svg?repos=pluralplay/FlClashX&Date"/>
-    </a>
-</p>
+If you want support donate me, link <a href="https://t.me/tribute/app?startapp=dtyh">this</a>
