@@ -10,10 +10,10 @@ import 'package:flutter/material.dart';
 
 const appName = "FlClashX";
 const appHelperService = "FlClashHelperService";
-const coreName = "clash.meta";
+const coreName = "clashx.meta";
 const browserUa =
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36";
-const packageName = "com.follow.clash";
+const packageName = "com.follow.clashx";
 final unixSocketPath = "/tmp/FlClashSocket_${Random().nextInt(10000)}.sock";
 const helperPort = 47890;
 const maxTextScale = 1.4;

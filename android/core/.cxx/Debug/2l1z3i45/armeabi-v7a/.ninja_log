@@ -1,0 +1,12 @@
+# ninja log v5
+5	65	7750231048543797	CMakeFiles/core.dir/core.cpp.o	1dc44ef7767cf157
+0	72	7750231048583983	CMakeFiles/core.dir/jni_helper.cpp.o	95c63ae5174f6f7c
+72	297	7750231049549311	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/Debug/2l1z3i45/obj/armeabi-v7a/libcore.so	6bcdd662f1cbd57d
+2	1574	7750233214486397	CMakeFiles/core.dir/core.cpp.o	1dc44ef7767cf157
+1574	3683	7750233233720262	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/Debug/2l1z3i45/obj/armeabi-v7a/libcore.so	6bcdd662f1cbd57d
+2	78	7750239055610544	CMakeFiles/core.dir/core.cpp.o	1dc44ef7767cf157
+78	259	7750239057381537	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/Debug/2l1z3i45/obj/armeabi-v7a/libcore.so	6bcdd662f1cbd57d
+1	83	7750248932290518	CMakeFiles/core.dir/core.cpp.o	1dc44ef7767cf157
+83	213	7750248933534974	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/Debug/2l1z3i45/obj/armeabi-v7a/libcore.so	6bcdd662f1cbd57d
+1	49	7750250285179257	CMakeFiles/core.dir/core.cpp.o	1dc44ef7767cf157
+49	108	7750250285747793	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/Debug/2l1z3i45/obj/armeabi-v7a/libcore.so	6bcdd662f1cbd57d

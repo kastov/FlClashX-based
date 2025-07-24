@@ -46,11 +46,11 @@
 Поддерживаются следующие действия:
 
    ```bash
-    com.follow.clash.action.START
+    com.follow.clashx.action.START
     
-    com.follow.clash.action.STOP
+    com.follow.clashx.action.STOP
     
-    com.follow.clash.action.CHANGE
+    com.follow.clashx.action.CHANGE
    ```
 
 ## Скачать

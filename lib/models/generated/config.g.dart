@@ -16,7 +16,7 @@ _$AppSettingPropsImpl _$$AppSettingPropsImplFromJson(
       onlyStatisticsProxy: json['onlyStatisticsProxy'] as bool? ?? false,
       autoLaunch: json['autoLaunch'] as bool? ?? true,
       silentLaunch: json['silentLaunch'] as bool? ?? false,
-      autoRun: json['autoRun'] as bool? ?? true,
+      autoRun: json['autoRun'] as bool? ?? false,
       openLogs: json['openLogs'] as bool? ?? false,
       closeConnections: json['closeConnections'] as bool? ?? true,
       testUrl: json['testUrl'] as String? ?? defaultTestUrl,
@@ -118,8 +118,8 @@ const _$AccessSortTypeEnumMap = {
 
 _$WindowPropsImpl _$$WindowPropsImplFromJson(Map<String, dynamic> json) =>
     _$WindowPropsImpl(
-      width: (json['width'] as num?)?.toDouble() ?? 750,
-      height: (json['height'] as num?)?.toDouble() ?? 600,
+      width: (json['width'] as num?)?.toDouble() ?? 450,
+      height: (json['height'] as num?)?.toDouble() ?? 900,
       top: (json['top'] as num?)?.toDouble(),
       left: (json['left'] as num?)?.toDouble(),
     );
@@ -334,7 +334,7 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
               json['networkProps'] as Map<String, dynamic>?),
       vpnProps: json['vpnProps'] == null
           ? defaultVpnProps
-          : VpnProps.fromJson(json['vpnProps'] as Map<String, dynamic>?),
+          : VpnProps.fromJson(json['vpnProps'] as Map<String, dynamic>),
       themeProps:
           ThemeProps.safeFromJson(json['themeProps'] as Map<String, Object?>?),
       proxiesStyle: json['proxiesStyle'] == null

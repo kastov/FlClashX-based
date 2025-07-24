@@ -8,7 +8,6 @@ executable_name: FlClashX.exe
 output_base_file_name: FlClashX.exe
 setup_icon_file: ..\windows\runner\resources\app_icon.ico
 locales:
-  - lang: zh
-    file: ..\windows\packaging\exe\ChineseSimplified.isl
+  - lang: ru
   - lang: en
 privileges_required: admin

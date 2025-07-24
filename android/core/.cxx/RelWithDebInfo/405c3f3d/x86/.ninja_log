@@ -1,11 +1,8 @@
 # ninja log v5
-5	28	7749990188523929	CMakeFiles/core.dir/core.cpp.o	12e554003b5d1919
-1	65	7749990188876806	CMakeFiles/core.dir/jni_helper.cpp.o	6ccd5f128b7d3fb7
-66	137	7749990189563625	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
-2	128	7750007062901156	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
-2	65	7750014632786838	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
-1	65	7750021791255638	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
-1	64	7750032471120970	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
-2	75	7750035216866543	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
-2	67	7750051936144346	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
-1	63	7750055058929566	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
+0	23	7750230014852348	CMakeFiles/core.dir/core.cpp.o	12e554003b5d1919
+4	51	7750230015133133	CMakeFiles/core.dir/jni_helper.cpp.o	6ccd5f128b7d3fb7
+52	119	7750230015784229	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656
+0	7	0	clean	3fe20a6a79bad2
+6	32	7750260629433219	CMakeFiles/core.dir/core.cpp.o	12e554003b5d1919
+1	71	7750260629817019	CMakeFiles/core.dir/jni_helper.cpp.o	6ccd5f128b7d3fb7
+72	147	7750260630542531	F:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86/libcore.so	888d8e40ba52d656

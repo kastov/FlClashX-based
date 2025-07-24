@@ -1,8 +1,8 @@
-package com.follow.clash
+package com.follow.clashx
 
-import com.follow.clash.plugins.AppPlugin
-import com.follow.clash.plugins.ServicePlugin
-import com.follow.clash.plugins.TilePlugin
+import com.follow.clashx.plugins.AppPlugin
+import com.follow.clashx.plugins.ServicePlugin
+import com.follow.clashx.plugins.TilePlugin
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 

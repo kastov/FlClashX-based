@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.follow.clash.core"
+    namespace = "com.follow.clashx.core"
     compileSdk = 35
     ndkVersion = "28.0.13004108"
 

@@ -326,7 +326,7 @@ class _$AppSettingPropsImpl implements _AppSettingProps {
       this.onlyStatisticsProxy = false,
       this.autoLaunch = true,
       this.silentLaunch = false,
-      this.autoRun = true,
+      this.autoRun = false,
       this.openLogs = false,
       this.closeConnections = true,
       this.testUrl = defaultTestUrl,
@@ -981,7 +981,7 @@ class __$$WindowPropsImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$WindowPropsImpl implements _WindowProps {
   const _$WindowPropsImpl(
-      {this.width = 750, this.height = 600, this.top, this.left});
+      {this.width = 450, this.height = 900, this.top, this.left});
 
   factory _$WindowPropsImpl.fromJson(Map<String, dynamic> json) =>
       _$$WindowPropsImplFromJson(json);

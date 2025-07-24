@@ -68,7 +68,7 @@ class AppSettingProps with _$AppSettingProps {
     @Default(false) bool onlyStatisticsProxy,
     @Default(true) bool autoLaunch,
     @Default(false) bool silentLaunch,
-    @Default(true) bool autoRun,
+    @Default(false) bool autoRun,
     @Default(false) bool openLogs,
     @Default(true) bool closeConnections,
     @Default(defaultTestUrl) String testUrl,
@@ -118,8 +118,8 @@ extension AccessControlExt on AccessControl {
 @freezed
 class WindowProps with _$WindowProps {
   const factory WindowProps({
-    @Default(750) double width,
-    @Default(600) double height,
+    @Default(450) double width,
+    @Default(900) double height,
     double? top,
     double? left,
   }) = _WindowProps;
@@ -138,8 +138,8 @@ class VpnProps with _$VpnProps {
     @Default(defaultAccessControl) AccessControl accessControl,
   }) = _VpnProps;
 
-  factory VpnProps.fromJson(Map<String, Object?>? json) =>
-      json == null ? defaultVpnProps : _$VpnPropsFromJson(json);
+  factory VpnProps.fromJson(Map<String, Object?> json) => 
+      _$VpnPropsFromJson(json);
 }
 
 @freezed

@@ -14,7 +14,7 @@ class Window {
       exit(0);
     }
     if (Platform.isWindows) {
-      protocol.register("clash");
+      protocol.register("clashx");
       protocol.register("clashmeta");
       protocol.register("flclash");
     }

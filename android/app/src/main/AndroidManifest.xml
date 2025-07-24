@@ -30,7 +30,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="FlClashX">
         <activity
-            android:name="com.follow.clash.MainActivity"
+            android:name="com.follow.clashx.MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
             android:exported="true"
             android:hardwareAccelerated="true"
@@ -92,7 +92,7 @@
         <service
             android:name=".services.FlClashTileService"
             android:exported="true"
-            android:icon="@mipmap/ic_launcher"
+            android:icon="@drawable/ic"
             android:label="FlClashX"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
             tools:targetApi="n">

@@ -1,0 +1,27 @@
+{
+  "buildFiles": [
+    "F:\\WORK\\Coding\\GitHub\\FlClashX\\android\\core\\src\\main\\cpp\\CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "C:\\Users\\vayud\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+      "-C",
+      "F:\\WORK\\Coding\\GitHub\\FlClashX\\android\\core\\.cxx\\Debug\\2l1z3i45\\x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "C:\\Users\\vayud\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe",
+    "-C",
+    "F:\\WORK\\Coding\\GitHub\\FlClashX\\android\\core\\.cxx\\Debug\\2l1z3i45\\x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {
+    "core::@6890427a1f51a3e7e1df": {
+      "artifactName": "core",
+      "abi": "x86",
+      "output": "F:\\WORK\\Coding\\GitHub\\FlClashX\\build\\core\\intermediates\\cxx\\Debug\\2l1z3i45\\obj\\x86\\libcore.so",
+      "runtimeFiles": []
+    }
+  }
+}

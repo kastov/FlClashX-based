@@ -349,7 +349,7 @@ enum DashboardWidget {
       child: TrafficUsage(),
     ),
   ),
-  announce( // <-- НАШ НОВЫЙ ВИДЖЕТ
+  announce(
     GridItem(
       crossAxisCellCount: 8,
       child: AnnounceWidget(),

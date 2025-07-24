@@ -50,18 +50,20 @@ cmake_ninja_workdir = F$:/WORK/Coding/GitHub/FlClashX/android/core/.cxx/RelWithD
 build cmake_object_order_depends_target_core: phony || CMakeFiles/core.dir
 
 build CMakeFiles/core.dir/jni_helper.cpp.o: CXX_COMPILER__core_RelWithDebInfo F$:/WORK/Coding/GitHub/FlClashX/android/core/src/main/cpp/jni_helper.cpp || cmake_object_order_depends_target_core
-  DEFINES = -Dcore_EXPORTS
+  DEFINES = -DLIBCLASH -Dcore_EXPORTS
   DEP_FILE = CMakeFiles\core.dir\jni_helper.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -O3 -flto -g0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+  INCLUDES = -IF:/WORK/Coding/GitHub/FlClashX/android/core/src/main/cpp/../jniLibs/x86_64
   OBJECT_DIR = CMakeFiles\core.dir
   OBJECT_FILE_DIR = CMakeFiles\core.dir
   TARGET_COMPILE_PDB = CMakeFiles\core.dir\
   TARGET_PDB = F:\WORK\Coding\GitHub\FlClashX\build\core\intermediates\cxx\RelWithDebInfo\405c3f3d\obj\x86_64\libcore.pdb
 
 build CMakeFiles/core.dir/core.cpp.o: CXX_COMPILER__core_RelWithDebInfo F$:/WORK/Coding/GitHub/FlClashX/android/core/src/main/cpp/core.cpp || cmake_object_order_depends_target_core
-  DEFINES = -Dcore_EXPORTS
+  DEFINES = -DLIBCLASH -Dcore_EXPORTS
   DEP_FILE = CMakeFiles\core.dir\core.cpp.o.d
   FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC -O3 -flto -g0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fvisibility=hidden -fvisibility-inlines-hidden
+  INCLUDES = -IF:/WORK/Coding/GitHub/FlClashX/android/core/src/main/cpp/../jniLibs/x86_64
   OBJECT_DIR = CMakeFiles\core.dir
   OBJECT_FILE_DIR = CMakeFiles\core.dir
   TARGET_COMPILE_PDB = CMakeFiles\core.dir\
@@ -78,7 +80,8 @@ build CMakeFiles/core.dir/core.cpp.o: CXX_COMPILER__core_RelWithDebInfo F$:/WORK
 build F$:/WORK/Coding/GitHub/FlClashX/build/core/intermediates/cxx/RelWithDebInfo/405c3f3d/obj/x86_64/libcore.so: CXX_SHARED_LIBRARY_LINKER__core_RelWithDebInfo CMakeFiles/core.dir/jni_helper.cpp.o CMakeFiles/core.dir/core.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -g -DNDEBUG
   LINK_FLAGS = -static-libstdc++ -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--no-undefined-version -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments  -Wl,--gc-sections   -flto -Wl,--gc-sections -Wl,--strip-all -Wl,--exclude-libs=ALL
-  LINK_LIBRARIES = -latomic -lm
+  LINK_LIBRARIES = -lclash  -latomic -lm
+  LINK_PATH = -LF:/WORK/Coding/GitHub/FlClashX/android/core/src/main/cpp/../jniLibs/x86_64
   OBJECT_DIR = CMakeFiles\core.dir
   POST_BUILD = cd .
   PRE_LINK = cd .

@@ -78,7 +78,7 @@ const _$ExternalControllerStatusEnumMap = {
 
 _$CoreStateImpl _$$CoreStateImplFromJson(Map<String, dynamic> json) =>
     _$CoreStateImpl(
-      vpnProps: VpnProps.fromJson(json['vpn-props'] as Map<String, dynamic>?),
+      vpnProps: VpnProps.fromJson(json['vpn-props'] as Map<String, dynamic>),
       onlyStatisticsProxy: json['only-statistics-proxy'] as bool,
       currentProfileName: json['current-profile-name'] as String,
       bypassDomain: (json['bypass-domain'] as List<dynamic>?)
