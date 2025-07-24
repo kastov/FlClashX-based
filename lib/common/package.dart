@@ -6,8 +6,7 @@ import 'common.dart';
 
 extension PackageInfoExtension on PackageInfo {
   String get ua => [
-        "$appName/v$version",
-        "clashx-verge",
+        "FlClash X/v$version",
         "Platform/${Platform.operatingSystem}",
       ].join(" ");
 }

@@ -1221,7 +1221,7 @@ class __$$VpnPropsImplCopyWithImpl<$Res>
 class _$VpnPropsImpl implements _VpnProps {
   const _$VpnPropsImpl(
       {this.enable = true,
-      this.systemProxy = false,
+      this.systemProxy = true,
       this.ipv6 = true,
       this.allowBypass = true,
       this.accessControl = defaultAccessControl});

@@ -34,27 +34,44 @@ class Request {
     });
   }
 
-  Future<Response<Uint8List>> getFileResponseForUrl(
-  String url, {
-  Map<String, dynamic>? headers,
-    }) async {
-  final Map<String, dynamic> requestHeaders = {
-    'User-Agent': 'FlClash',
-  };
+   Future<Response<Uint8List>> getFileResponseForUrl(
+    String url, {
+    Map<String, dynamic>? headers,
+  }) async {
+    final Map<String, dynamic> requestHeaders = headers ?? {};
+    requestHeaders['User-Agent'] = globalState.ua;
 
-  if (headers != null) {
-    requestHeaders.addAll(headers);
+    var firstResponse = await _dio.get<Uint8List>(
+      url,
+      options: Options(
+        responseType: ResponseType.bytes,
+        headers: requestHeaders,
+        followRedirects: false,
+        validateStatus: (status) => status != null && status < 400,
+      ),
+    );
+
+    if (firstResponse.isRedirect == true) {
+      final newUrl = firstResponse.headers.value('location');
+      if (newUrl == null) {
+        throw Exception('Redirect detected, but no location header was found.');
+      }
+
+      print('↪️ Redirecting to: $newUrl');
+      final finalResponse = await _dio.get<Uint8List>(
+        newUrl,
+        options: Options(
+          responseType: ResponseType.bytes,
+          headers: requestHeaders,
+          followRedirects: true,
+          maxRedirects: 5,
+          validateStatus: (status) => status != null && status < 500,
+        ),
+      );
+      return finalResponse;
+    }
+    return firstResponse;
   }
-
-  final response = await _dio.get<Uint8List>(
-    url,
-    options: Options(
-      responseType: ResponseType.bytes,
-      headers: requestHeaders,
-    ),
-  );
-  return response;
-}
 
   Future<Response> getTextResponseForUrl(String url) async {
     final response = await _clashDio.get(
