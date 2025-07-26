@@ -3,7 +3,7 @@ import 'package:flclashx/pages/scan.dart';
 import 'package:flclashx/state.dart';
 import 'package:flclashx/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart'; // <-- ИМПОРТ ДЛЯ БУФЕРА ОБМЕНА
+import 'package:flutter/services.dart';
 
 class AddProfileView extends StatelessWidget {
   final BuildContext context;
@@ -89,7 +89,6 @@ class _URLFormDialogState extends State<URLFormDialog> {
     Navigator.of(context).pop<String>(url);
   }
 
-  // НОВЫЙ МЕТОД ДЛЯ ВСТАВКИ ИЗ БУФЕРА
   Future<void> _handlePaste() async {
     final clipboardData = await Clipboard.getData(Clipboard.kTextPlain);
     if (clipboardData?.text != null) {
@@ -101,10 +100,9 @@ class _URLFormDialogState extends State<URLFormDialog> {
   Widget build(BuildContext context) {
     return CommonDialog(
       title: appLocalizations.importFromURL,
-      // ИЗМЕНЕНИЕ: Оборачиваем кнопки в Row
       actions: [
         Row(
-          mainAxisSize: MainAxisSize.min, // Чтобы Row не занимал всю ширину
+          mainAxisSize: MainAxisSize.min,
           children: [
             FilledButton(
               onPressed: _handlePaste,

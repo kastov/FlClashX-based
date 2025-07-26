@@ -698,7 +698,7 @@ class AppController {
 
       await addProfile(profile);
     }
-  } catch (err) { // Эта "ловушка" теперь ловит ВСЕ ошибки
+  } catch (err) {
     commonPrint.log('Add Profile Failed: $err');
     globalState.showMessage(message: TextSpan(text: err.toString()));
   }
