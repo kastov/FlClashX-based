@@ -1708,7 +1708,7 @@ class __$$ProxiesStyleImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProxiesStyleImpl implements _ProxiesStyle {
   const _$ProxiesStyleImpl(
-      {this.type = ProxiesType.tab,
+      {this.type = ProxiesType.list,
       this.sortType = ProxiesSortType.none,
       this.layout = ProxiesLayout.standard,
       this.iconStyle = ProxiesIconStyle.standard,

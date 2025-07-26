@@ -3,6 +3,7 @@ import 'package:flclashx/pages/scan.dart';
 import 'package:flclashx/state.dart';
 import 'package:flclashx/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart'; // <-- ИМПОРТ ДЛЯ БУФЕРА ОБМЕНА
 
 class AddProfileView extends StatelessWidget {
   final BuildContext context;
@@ -38,21 +39,7 @@ class AddProfileView extends StatelessWidget {
 
   _toAdd() async {
     final url = await globalState.showCommonDialog<String>(
-      child: InputDialog(
-        autovalidateMode: AutovalidateMode.onUnfocus,
-        title: appLocalizations.importFromURL,
-        labelText: appLocalizations.url,
-        value: '',
-        validator: (value) {
-          if (value == null || value.isEmpty) {
-            return appLocalizations.emptyTip("").trim();
-          }
-          if (!value.isUrl) {
-            return appLocalizations.urlTip("").trim();
-          }
-          return null;
-        },
-      ),
+      child: const URLFormDialog(),
     );
     if (url != null) {
       _handleAddProfileFormURL(url);
@@ -102,14 +89,33 @@ class _URLFormDialogState extends State<URLFormDialog> {
     Navigator.of(context).pop<String>(url);
   }
 
+  // НОВЫЙ МЕТОД ДЛЯ ВСТАВКИ ИЗ БУФЕРА
+  Future<void> _handlePaste() async {
+    final clipboardData = await Clipboard.getData(Clipboard.kTextPlain);
+    if (clipboardData?.text != null) {
+      urlController.text = clipboardData!.text!;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return CommonDialog(
       title: appLocalizations.importFromURL,
+      // ИЗМЕНЕНИЕ: Оборачиваем кнопки в Row
       actions: [
-        TextButton(
-          onPressed: _handleAddProfileFormURL,
-          child: Text(appLocalizations.submit),
+        Row(
+          mainAxisSize: MainAxisSize.min, // Чтобы Row не занимал всю ширину
+          children: [
+            FilledButton(
+              onPressed: _handlePaste,
+              child: Text(appLocalizations.pasteFromClipboard),
+            ),
+            const SizedBox(width: 8),
+            FilledButton(
+              onPressed: _handleAddProfileFormURL,
+              child: Text(appLocalizations.submit),
+            ),
+          ],
         )
       ],
       child: SizedBox(

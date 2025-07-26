@@ -675,18 +675,32 @@ class AppController {
   toProfiles();
   final commonScaffoldState = globalState.homeScaffoldKey.currentState;
   if (commonScaffoldState?.mounted != true) return;
-  final profile = await commonScaffoldState?.loadingRun<Profile>(
-    () async {
-      final prefs = await SharedPreferences.getInstance();
-      final shouldSend = prefs.getBool('sendDeviceHeaders') ?? true;
-      return await Profile.normal(
-        url: url,
-      ).update(shouldSendHeaders: shouldSend);
-    },
-    title: "${appLocalizations.add}${appLocalizations.profile}",
-  );
-  if (profile != null) {
-    await addProfile(profile);
+
+  final tempProfile = Profile.normal(url: url);
+
+  try {
+    final profile = await commonScaffoldState?.loadingRun<Profile>(
+      () async {
+        final prefs = await SharedPreferences.getInstance();
+        final shouldSend = prefs.getBool('sendDeviceHeaders') ?? true;
+        return await tempProfile.update(shouldSendHeaders: shouldSend);
+      },
+      title: "${appLocalizations.add}${appLocalizations.profile}",
+    );
+
+    if (profile != null) {
+      if (profile.hideMode == true) {
+        final appSettingsNotifier = _ref.read(appSettingProvider.notifier);
+        appSettingsNotifier.updateState(
+          (state) => state.copyWith(dashboardWidgets: [DashboardWidget.announce]),
+        );
+      }
+
+      await addProfile(profile);
+    }
+  } catch (err) { // Эта "ловушка" теперь ловит ВСЕ ошибки
+    commonPrint.log('Add Profile Failed: $err');
+    globalState.showMessage(message: TextSpan(text: err.toString()));
   }
 }
 

@@ -478,7 +478,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "options": MessageLookupByLibrary.simpleMessage("Опции"),
     "other": MessageLookupByLibrary.simpleMessage("Другое"),
     "otherContributors": MessageLookupByLibrary.simpleMessage(
-      "Другие участники",
+      "Участники проекта",
     ),
     "originalRepository": MessageLookupByLibrary.simpleMessage("Оригинальный репозиторий"),
     "outboundMode": MessageLookupByLibrary.simpleMessage(
@@ -501,6 +501,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "palette": MessageLookupByLibrary.simpleMessage("Палитра"),
     "password": MessageLookupByLibrary.simpleMessage("Пароль"),
     "paste": MessageLookupByLibrary.simpleMessage("Вставить"),
+    "pasteFromClipboard": MessageLookupByLibrary.simpleMessage("Вставить"),
     "pleaseBindWebDAV": MessageLookupByLibrary.simpleMessage(
       "Пожалуйста, привяжите WebDAV",
     ),
@@ -691,6 +692,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Работает только в мобильном режиме",
     ),
     "tcpConcurrent": MessageLookupByLibrary.simpleMessage("TCP параллелизм"),
+    "thanks": MessageLookupByLibrary.simpleMessage("Спасибо за вклад"),
     "tcpConcurrentDesc": MessageLookupByLibrary.simpleMessage(
       "Включение позволит использовать параллелизм TCP",
     ),

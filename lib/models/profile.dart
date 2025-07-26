@@ -15,11 +15,6 @@ import 'clash_config.dart';
 part 'generated/profile.freezed.dart';
 part 'generated/profile.g.dart';
 
-class DeviceLimitExceededException implements Exception {
-  final String message;
-  DeviceLimitExceededException(this.message);
-}
-
 typedef SelectedMap = Map<String, String>;
 
 @freezed
@@ -58,7 +53,6 @@ class Profile with _$Profile {
     String? label,
     String? currentGroupName,
     String? announceText,
-    @Default(false) bool hideMode,
     @Default("") String url,
     DateTime? lastUpdateDate,
     required Duration autoUpdateDuration,
@@ -70,6 +64,8 @@ class Profile with _$Profile {
     @JsonKey(includeToJson: false, includeFromJson: false)
     @Default(false)
     bool isUpdating,
+    bool? hideMode,
+
   }) = _Profile;
 
   factory Profile.fromJson(Map<String, Object?> json) =>
@@ -197,7 +193,13 @@ extension ProfileExtension on Profile {
     final disposition = response.headers.value("content-disposition");
     final userinfo = response.headers.value('subscription-userinfo');
     final announce = response.headers.value('announce');
-    final hideModeHeader = response.headers.value('hidemode');
+    final hideModeHeader = response.headers.value('flclashx-hidemode');
+      bool? hideModeValue;
+      if (hideModeHeader == 'true') {
+        hideModeValue = true;
+      } else if (hideModeHeader == 'false') {
+        hideModeValue = false;
+      }
 
     final responseData = response.data;
     if (responseData == null) {
@@ -208,7 +210,7 @@ extension ProfileExtension on Profile {
       label: label ?? utils.getFileNameForDisposition(disposition) ?? id,
       subscriptionInfo: SubscriptionInfo.formHString(userinfo),
       announceText: announce,
-      hideMode: hideModeHeader == 'true'
+      hideMode: hideModeValue,
     ).saveFile(responseData);
   }
 

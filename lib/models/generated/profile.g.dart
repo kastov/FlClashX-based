@@ -30,7 +30,6 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
       label: json['label'] as String?,
       currentGroupName: json['currentGroupName'] as String?,
       announceText: json['announceText'] as String?,
-      hideMode: json['hideMode'] as bool? ?? false,
       url: json['url'] as String? ?? "",
       lastUpdateDate: json['lastUpdateDate'] == null
           ? null
@@ -53,6 +52,7 @@ _$ProfileImpl _$$ProfileImplFromJson(Map<String, dynamic> json) =>
       overrideData: json['overrideData'] == null
           ? const OverrideData()
           : OverrideData.fromJson(json['overrideData'] as Map<String, dynamic>),
+      hideMode: json['hideMode'] as bool?,
     );
 
 Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
@@ -61,7 +61,6 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
       'label': instance.label,
       'currentGroupName': instance.currentGroupName,
       'announceText': instance.announceText,
-      'hideMode': instance.hideMode,
       'url': instance.url,
       'lastUpdateDate': instance.lastUpdateDate?.toIso8601String(),
       'autoUpdateDuration': instance.autoUpdateDuration.inMicroseconds,
@@ -70,6 +69,7 @@ Map<String, dynamic> _$$ProfileImplToJson(_$ProfileImpl instance) =>
       'selectedMap': instance.selectedMap,
       'unfoldSet': instance.unfoldSet.toList(),
       'overrideData': instance.overrideData,
+      'hideMode': instance.hideMode,
     };
 
 _$OverrideDataImpl _$$OverrideDataImplFromJson(Map<String, dynamic> json) =>

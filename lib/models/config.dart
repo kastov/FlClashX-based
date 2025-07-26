@@ -158,7 +158,7 @@ class NetworkProps with _$NetworkProps {
 @freezed
 class ProxiesStyle with _$ProxiesStyle {
   const factory ProxiesStyle({
-    @Default(ProxiesType.tab) ProxiesType type,
+    @Default(ProxiesType.list) ProxiesType type,
     @Default(ProxiesSortType.none) ProxiesSortType sortType,
     @Default(ProxiesLayout.standard) ProxiesLayout layout,
     @Default(ProxiesIconStyle.standard) ProxiesIconStyle iconStyle,

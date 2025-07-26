@@ -35,6 +35,41 @@ class AboutView extends StatelessWidget {
       handleError: true,
     );
   }
+  List<Widget> _buildThanksSection(BuildContext context) {
+    return generateSection(
+      separated: false,
+      title: appLocalizations.thanks,
+      items: [
+        ListItem(
+          title: const Text("legiz | for any ideas"),
+          onTap: () {
+            globalState.openUrl(
+              "https://t.me/legiz_trashbag",
+            );
+          },
+          trailing: const Icon(Icons.near_me),
+        ),
+        ListItem(
+          title: const Text("x_kit_ | for refactor locale"),
+          onTap: () {
+            globalState.openUrl(
+              "https://github.com/this-xkit",
+            );
+          },
+          trailing: const Icon(Icons.near_me),
+        ),
+        ListItem(
+          title: const Text("cool_coala | for any ideas"),
+          onTap: () {
+            globalState.openUrl(
+              "https://github.com/coolcoala",
+            );
+          },
+          trailing: const Icon(Icons.near_me),
+        ),
+      ],
+    );
+  }
 
   List<Widget> _buildMoreSection(BuildContext context) {
     return generateSection(
@@ -46,6 +81,7 @@ class AboutView extends StatelessWidget {
           onTap: () {
             _checkUpdate(context);
           },
+          trailing: const Icon(Icons.update),
         ),
         ListItem(
           title: const Text("Telegram"),
@@ -54,7 +90,7 @@ class AboutView extends StatelessWidget {
               "https://t.me/FlClashx",
             );
           },
-          trailing: const Icon(Icons.launch),
+          trailing: const Icon(Icons.insert_link),
         ),
         ListItem(
           title: Text(appLocalizations.project),
@@ -63,7 +99,7 @@ class AboutView extends StatelessWidget {
               "https://github.com/$repository",
             );
           },
-          trailing: const Icon(Icons.launch),
+          trailing: const Icon(Icons.insert_link),
         ),
         ListItem(
           title: Text(appLocalizations.originalRepository),
@@ -72,9 +108,8 @@ class AboutView extends StatelessWidget {
               "https://github.com/chen08209/FlClash",
             );
           },
-          trailing: const Icon(Icons.launch),
+          trailing: const Icon(Icons.insert_link),
         ),
-        // --- КОНЕЦ ---
         ListItem(
           title: Text(appLocalizations.core),
           onTap: () {
@@ -82,7 +117,7 @@ class AboutView extends StatelessWidget {
               "https://github.com/chen08209/Clash.Meta/tree/FlClash",
             );
           },
-          trailing: const Icon(Icons.launch),
+          trailing: const Icon(Icons.insert_link),
         ),
       ],
     );
@@ -176,6 +211,7 @@ class AboutView extends StatelessWidget {
         height: 12,
       ),
       ..._buildContributorsSection(),
+      ..._buildThanksSection(context),
       ..._buildMoreSection(context),
     ];
     return Padding(

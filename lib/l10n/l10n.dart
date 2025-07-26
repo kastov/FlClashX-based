@@ -87,7 +87,10 @@ class AppLocalizations {
   String get proxies {
     return Intl.message('Proxies', name: 'proxies', desc: '', args: []);
   }
-
+  /// `Thanks`
+  String get thanks {
+    return Intl.message('Special Thanks', name: 'thanks', desc: '', args: []);
+  }
   /// `Profile`
   String get profile {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
@@ -1621,6 +1624,16 @@ class AppLocalizations {
     return Intl.message(
       'Auto close connections',
       name: 'autoCloseConnections',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Paste from Clipboard`
+  String get pasteFromClipboard {
+    return Intl.message(
+      'Paste',
+      name: 'pasteFromClipboard',
       desc: '',
       args: [],
     );
