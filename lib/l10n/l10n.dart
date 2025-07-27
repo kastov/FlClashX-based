@@ -1648,9 +1648,6 @@ class AppLocalizations {
   String get sentSuccessfullyMessage {
     return Intl.message('Subscription sent to TV successfully.', name: 'sentSuccessfullyMessage');
   }
-  String get noActiveProfileMessage {
-    return Intl.message('No active subscription to send.', name: 'noActiveProfileMessage');
-  }
   String get invalidQrMessage {
     return Intl.message('Invalid QR code or failed to send data.', name: 'invalidQrMessage');
   }

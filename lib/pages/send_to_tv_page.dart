@@ -6,11 +6,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class SendToTvPage extends ConsumerStatefulWidget {
-  final String profileUrl; // <-- НОВОЕ ПОЛЕ
+  final String profileUrl;
 
   const SendToTvPage({
     super.key,
-    required this.profileUrl, // <-- ОБЯЗАТЕЛЬНЫЙ ПАРАМЕТР
+    required this.profileUrl,
   });
 
   @override
@@ -36,9 +36,11 @@ class _SendToTvPageState extends ConsumerState<SendToTvPage> {
         final ip = data['ip'];
         final port = data['port'];
         final tvUrl = 'http://$ip:$port/add-profile';
-
-        // ИСПОЛЬЗУЕМ ПЕРЕДАННЫЙ URL, А НЕ АКТИВНЫЙ ПРОФИЛЬ
-        await Dio().post(
+        final dio = Dio(BaseOptions(
+          connectTimeout: const Duration(seconds: 5),
+          receiveTimeout: const Duration(seconds: 5),
+        ));
+        await dio.post(
           tvUrl,
           data: {'url': widget.profileUrl},
         );
@@ -46,7 +48,7 @@ class _SendToTvPageState extends ConsumerState<SendToTvPage> {
       }
     } catch (e) {
       _showResultDialog(appLocalizations.errorTitle, appLocalizations.invalidQrMessage);
-      print('Ошибка при отправке на ТВ: $e');
+      print('Error sending to TV: $e');
     }
   }
 
