@@ -1618,7 +1618,49 @@ class AppLocalizations {
       args: [],
     );
   }
-
+  String get addFromPhoneTitle {
+  return Intl.message('Add from Phone', name: 'addFromPhoneTitle');
+  }
+  String get addFromPhoneSubtitle {
+    return Intl.message('Show the QR code on your phone to scan', name: 'addFromPhoneSubtitle');
+  }
+  String get sendToTv {
+    return Intl.message('Send to TV', name: 'sendToTv');
+  }
+  String get receiveSubscriptionTitle {
+    return Intl.message('Receive Subscription from Phone', name: 'receiveSubscriptionTitle');
+  }
+  String get receiveSubscriptionButton {
+    return Intl.message('Receive from Phone', name: 'receiveSubscriptionButton');
+  }
+  String get receiveSubscriptionSubtitle {
+    return Intl.message('Show the QR code on your phone to scan', name: 'receiveSubscriptionSubtitle');
+  }
+  String get sendToTvTitle {
+    return Intl.message('Send to TV', name: 'sendToTvTitle');
+  }
+  String get successTitle {
+    return Intl.message('Success', name: 'successTitle');
+  }
+  String get errorTitle {
+    return Intl.message('Error', name: 'errorTitle');
+  }
+  String get sentSuccessfullyMessage {
+    return Intl.message('Subscription sent to TV successfully.', name: 'sentSuccessfullyMessage');
+  }
+  String get noActiveProfileMessage {
+    return Intl.message('No active subscription to send.', name: 'noActiveProfileMessage');
+  }
+  String get invalidQrMessage {
+    return Intl.message('Invalid QR code or failed to send data.', name: 'invalidQrMessage');
+  }
+  /// `Select`
+  String get selectProfile {
+    return Intl.message(
+      'Select',
+      name: 'selectProfile',
+    );
+  }
   /// `Auto close connections`
   String get autoCloseConnections {
     return Intl.message(

@@ -20,7 +20,16 @@ class System {
   }
 
   bool get isDesktop =>
-      Platform.isWindows || Platform.isMacOS || Platform.isLinux;
+      Platform.isWindows || Platform.isLinux || Platform.isMacOS;
+
+  bool get isMobile => Platform.isAndroid || Platform.isIOS;
+
+  Future<bool> get isAndroidTV async {
+    if (!Platform.isAndroid) return false;
+    final deviceInfo = await DeviceInfoPlugin().androidInfo;
+    return deviceInfo.systemFeatures.contains('android.software.leanback');
+  }
+
 
   Future<int> get version async {
     final deviceInfo = await DeviceInfoPlugin().deviceInfo;
