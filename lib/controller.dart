@@ -130,10 +130,11 @@ class AppController {
   }
 
   addProfile(Profile profile) async {
-    _ref.read(profilesProvider.notifier).setProfile(profile);
-    if (_ref.read(currentProfileIdProvider) != null) return;
-    _ref.read(currentProfileIdProvider.notifier).value = profile.id;
-  }
+  _ref.read(profilesProvider.notifier).setProfile(profile);
+  if (_ref.read(currentProfileIdProvider) != null) return;
+  _ref.read(currentProfileIdProvider.notifier).value = profile.id;
+  applyProfileDebounce(silence: true);
+}
 
   deleteProfile(String id) async {
     _ref.read(profilesProvider.notifier).deleteProfileById(id);

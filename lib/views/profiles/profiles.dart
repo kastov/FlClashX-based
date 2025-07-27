@@ -2,7 +2,8 @@ import 'dart:ui';
 
 import 'package:flclashx/common/common.dart';
 import 'package:flclashx/enum/enum.dart';
-import 'package:flclashx/models/models.dart';
+import 'package:flclashx/models/models.dart' hide Action;
+import 'package:flclashx/pages/pages.dart';
 import 'package:flclashx/providers/providers.dart';
 import 'package:flclashx/state.dart';
 import 'package:flclashx/views/profiles/edit_profile.dart';
@@ -10,6 +11,7 @@ import 'package:flclashx/views/profiles/override_profile.dart';
 import 'package:flclashx/views/profiles/scripts.dart';
 import 'package:flclashx/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'add_profile.dart';
@@ -184,7 +186,7 @@ class _ProfilesViewState extends State<ProfilesView> with PageMixin {
   }
 }
 
-class ProfileItem extends StatelessWidget {
+class ProfileItem extends StatefulWidget {
   final Profile profile;
   final String? groupValue;
   final void Function(String? value) onChanged;
@@ -196,6 +198,43 @@ class ProfileItem extends StatelessWidget {
     required this.onChanged,
   });
 
+  @override
+  State<ProfileItem> createState() => _ProfileItemState();
+}
+
+class _ProfileItemState extends State<ProfileItem> {
+  final FocusNode _menuFocusNode = FocusNode();
+  bool _isMenuFocused = false;
+  bool _isTV = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkIfTV();
+    _menuFocusNode.addListener(() {
+      if (mounted) {
+        setState(() {
+          _isMenuFocused = _menuFocusNode.hasFocus;
+        });
+      }
+    });
+  }
+
+  Future<void> _checkIfTV() async {
+    final isTV = await system.isAndroidTV;
+    if (mounted) {
+      setState(() {
+        _isTV = isTV;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    _menuFocusNode.dispose();
+    super.dispose();
+  }
+
   _handleDeleteProfile(BuildContext context) async {
     final res = await globalState.showMessage(
       title: appLocalizations.tip,
@@ -206,23 +245,23 @@ class ProfileItem extends StatelessWidget {
     if (res != true) {
       return;
     }
-    await globalState.appController.deleteProfile(profile.id);
+    await globalState.appController.deleteProfile(widget.profile.id);
   }
 
   Future updateProfile() async {
     final appController = globalState.appController;
-    if (profile.type == ProfileType.file) return;
+    if (widget.profile.type == ProfileType.file) return;
     await globalState.safeRun(silence: false, () async {
       try {
         appController.setProfile(
-          profile.copyWith(
+          widget.profile.copyWith(
             isUpdating: true,
           ),
         );
-        await appController.updateProfile(profile);
+        await appController.updateProfile(widget.profile);
       } catch (e) {
         appController.setProfile(
-          profile.copyWith(
+          widget.profile.copyWith(
             isUpdating: false,
           ),
         );
@@ -238,7 +277,7 @@ class ProfileItem extends StatelessWidget {
         return AdaptiveSheetScaffold(
           type: type,
           body: EditProfileView(
-            profile: profile,
+            profile: widget.profile,
             context: context,
           ),
           title: "${appLocalizations.edit}${appLocalizations.profile}",
@@ -248,7 +287,7 @@ class ProfileItem extends StatelessWidget {
   }
 
   List<Widget> _buildUrlProfileInfo(BuildContext context) {
-    final subscriptionInfo = profile.subscriptionInfo;
+    final subscriptionInfo = widget.profile.subscriptionInfo;
     return [
       const SizedBox(
         height: 8,
@@ -258,7 +297,7 @@ class ProfileItem extends StatelessWidget {
           subscriptionInfo: subscriptionInfo,
         ),
       Text(
-        profile.lastUpdateDate?.lastUpdateTimeDesc ?? "",
+        widget.profile.lastUpdateDate?.lastUpdateTimeDesc ?? "",
         style: context.textTheme.labelMedium?.toLight,
       ),
     ];
@@ -270,30 +309,19 @@ class ProfileItem extends StatelessWidget {
         height: 8,
       ),
       Text(
-        profile.lastUpdateDate?.lastUpdateTimeDesc ?? "",
+        widget.profile.lastUpdateDate?.lastUpdateTimeDesc ?? "",
         style: context.textTheme.labelMedium?.toLight,
       ),
     ];
   }
 
-  // _handleCopyLink(BuildContext context) async {
-  //   await Clipboard.setData(
-  //     ClipboardData(
-  //       text: profile.url,
-  //     ),
-  //   );
-  //   if (context.mounted) {
-  //     context.showNotifier(appLocalizations.copySuccess);
-  //   }
-  // }
-
   _handleExportFile(BuildContext context) async {
     final commonScaffoldState = context.commonScaffoldState;
     final res = await commonScaffoldState?.loadingRun<bool>(
       () async {
-        final file = await profile.getFile();
+        final file = await widget.profile.getFile();
         final value = await picker.saveFile(
-          profile.label ?? profile.id,
+          widget.profile.label ?? widget.profile.id,
           file.readAsBytesSync(),
         );
         if (value == null) return false;
@@ -319,19 +347,21 @@ class ProfileItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CommonCard(
-      isSelected: profile.id == groupValue,
-      onPressed: () {
-        onChanged(profile.id);
-      },
+      isSelected: widget.profile.id == widget.groupValue,
+      onPressed: _isTV
+          ? null
+          : () {
+              widget.onChanged(widget.profile.id);
+            },
       child: ListItem(
-        key: Key(profile.id),
+        key: Key(widget.profile.id),
         horizontalTitleGap: 16,
         padding: const EdgeInsets.symmetric(horizontal: 16),
         trailing: SizedBox(
           height: 40,
           width: 40,
           child: FadeThroughBox(
-            child: profile.isUpdating
+            child: widget.profile.isUpdating
                 ? const Padding(
                     padding: EdgeInsets.all(8),
                     child: CircularProgressIndicator(),
@@ -339,6 +369,14 @@ class ProfileItem extends StatelessWidget {
                 : CommonPopupBox(
                     popup: CommonPopupMenu(
                       items: [
+                        if (_isTV)
+                          PopupMenuItemData(
+                            icon: Icons.check_circle_outline,
+                            label: appLocalizations.selectProfile,
+                            onPressed: () {
+                              widget.onChanged(widget.profile.id);
+                            },
+                          ),
                         PopupMenuItemData(
                           icon: Icons.edit_outlined,
                           label: appLocalizations.edit,
@@ -346,7 +384,7 @@ class ProfileItem extends StatelessWidget {
                             _handleShowEditExtendPage(context);
                           },
                         ),
-                        if (profile.type == ProfileType.url) ...[
+                        if (widget.profile.type == ProfileType.url) ...[
                           PopupMenuItemData(
                             icon: Icons.sync_alt_sharp,
                             label: appLocalizations.sync,
@@ -355,11 +393,21 @@ class ProfileItem extends StatelessWidget {
                             },
                           ),
                         ],
+                        if (system.isMobile && !_isTV)
+                          PopupMenuItemData(
+                            icon: Icons.tv_outlined,
+                            label: appLocalizations.sendToTv,
+                            onPressed: () {
+                              BaseNavigator.push(context,
+                                  SendToTvPage(profileUrl: widget.profile.url));
+                            },
+                          ),
                         PopupMenuItemData(
                           icon: Icons.extension_outlined,
                           label: appLocalizations.override,
                           onPressed: () {
-                            _handlePushGenProfilePage(context, profile.id);
+                            _handlePushGenProfilePage(
+                                context, widget.profile.id);
                           },
                         ),
                         PopupMenuItemData(
@@ -379,11 +427,19 @@ class ProfileItem extends StatelessWidget {
                       ],
                     ),
                     targetBuilder: (open) {
-                      return IconButton(
-                        onPressed: () {
-                          open();
-                        },
-                        icon: Icon(Icons.more_vert),
+                      return Focus(
+                        focusNode: _menuFocusNode,
+                        canRequestFocus: true,
+                        child: Material(
+                          color: _isMenuFocused
+                              ? Theme.of(context).focusColor
+                              : Colors.transparent,
+                          borderRadius: BorderRadius.circular(20),
+                          child: IconButton(
+                            onPressed: open,
+                            icon: const Icon(Icons.more_vert),
+                          ),
+                        ),
                       );
                     },
                   ),
@@ -396,7 +452,7 @@ class ProfileItem extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                profile.label ?? profile.id,
+                widget.profile.label ?? widget.profile.id,
                 style: context.textTheme.titleMedium,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -406,7 +462,7 @@ class ProfileItem extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  ...switch (profile.type) {
+                  ...switch (widget.profile.type) {
                     ProfileType.file => _buildFileProfileInfo(context),
                     ProfileType.url => _buildUrlProfileInfo(context),
                   },
@@ -488,13 +544,13 @@ class _ReorderableProfilesSheetState extends State<ReorderableProfilesSheet> {
             Navigator.of(context).pop();
             globalState.appController.setProfiles(profiles);
           },
-          icon: Icon(
+          icon: const Icon(
             Icons.save,
           ),
         )
       ],
       body: Padding(
-        padding: EdgeInsets.only(
+        padding: const EdgeInsets.only(
           bottom: 32,
           top: 16,
         ),
