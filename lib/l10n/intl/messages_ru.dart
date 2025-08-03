@@ -93,6 +93,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "sentSuccessfullyMessage": MessageLookupByLibrary.simpleMessage("Подписка успешно отправлена на ТВ."),
     "invalidQrMessage": MessageLookupByLibrary.simpleMessage("Неверный QR-код или не удалось отправить данные."),
     "selectProfile": MessageLookupByLibrary.simpleMessage("Выбрать"),
+    "support": MessageLookupByLibrary.simpleMessage("Поддержка"),
+    "subscriptionExpiresOn": (date) => "Ваша подписка заканчивается ${date}",
+    "traffic": MessageLookupByLibrary.simpleMessage("Трафик:"),
+    "expiresOn": MessageLookupByLibrary.simpleMessage("Подписка действительна до:"),
     "allowBypassDesc": MessageLookupByLibrary.simpleMessage(
       "Некоторые приложения могут обходить VPN при включении",
     ),
@@ -100,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "allowLanDesc": MessageLookupByLibrary.simpleMessage(
       "Разрешить доступ к прокси через локальную сеть",
     ),
+    "updated": MessageLookupByLibrary.simpleMessage("Обновлено:"),
     "app": MessageLookupByLibrary.simpleMessage("Приложение"),
     "appAccessControl": MessageLookupByLibrary.simpleMessage(
       "Контроль доступа приложений",
@@ -118,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCheckUpdateDesc": MessageLookupByLibrary.simpleMessage(
       "Автоматически проверять обновления при запуске приложения",
     ),
+    "subscriptionUnlimited": MessageLookupByLibrary.simpleMessage("Ваша подписка вечная"),
+
     "autoCloseConnections": MessageLookupByLibrary.simpleMessage(
       "Автоматическое закрытие соединений",
     ),
@@ -132,6 +139,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoRunDesc": MessageLookupByLibrary.simpleMessage(
       "Автоматически подключаться при запуске приложения",
     ),
+    "subscriptionEternal": MessageLookupByLibrary.simpleMessage("Ваша подписка вечная"),
+    "trafficUnlimited": MessageLookupByLibrary.simpleMessage("Ваш трафик безлимитный"),
+    "daysUntilExpiration": (days) => "Дней до окончания: ${days}",
+    "subscriptionExpiresSoon": MessageLookupByLibrary.simpleMessage("Подписка скоро закончится"),
+    "subscriptionExpiresInDays": (days) => "Ваша подписка закончится через ${days} дня.",
+    "renew": MessageLookupByLibrary.simpleMessage("Продлить"),
     "autoSetSystemDns": MessageLookupByLibrary.simpleMessage(
       "Автоматическая настройка системного DNS",
     ),
@@ -473,6 +486,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "nullProfileDesc": MessageLookupByLibrary.simpleMessage(
       "Нет профиля, пожалуйста, добавьте профиль",
+    ),
+    "profileAddedSuccess": MessageLookupByLibrary.simpleMessage(
+      "Профиль добавлен успешно",
     ),
     "nullTip": m4,
     "numberTip": m5,

@@ -95,6 +95,10 @@ class AppLocalizations {
   String get profile {
     return Intl.message('Profile', name: 'profile', desc: '', args: []);
   }
+  /// `Success add profile`
+  String get profileAddedSuccess {
+    return Intl.message('Success add profile', name: 'profileAddedSuccess', desc: '', args: []);
+  }
   /// `Original Repository`
   String get originalRepository {
   return Intl.message('Original Repository', name: 'originalRepository', desc: '', args: []);
@@ -1667,7 +1671,44 @@ class AppLocalizations {
       args: [],
     );
   }
+  /// `Support`
+  String get support {
+    return Intl.message(
+      'Support',
+      name: 'support',
+    );
+  }
+  /// `Your subscription expires on {date}`
+  String subscriptionExpiresOn(Object date) {
+    return Intl.message(
+      'Your subscription expires on $date',
+      name: 'subscriptionExpiresOn',
+      args: [date],
+    );
+  }
+    /// `Updated:`
+    String get updated {
+      return Intl.message(
+        'Updated:',
+        name: 'updated',
+      );
+    }
 
+    /// `Traffic:`
+  String get traffic {
+    return Intl.message(
+      'Traffic:',
+      name: 'traffic',
+    );
+  }
+
+  /// `Expires on:`
+  String get expiresOn {
+    return Intl.message(
+      'Expires on:',
+      name: 'expiresOn',
+    );
+  }
   /// `Paste from Clipboard`
   String get pasteFromClipboard {
     return Intl.message(
@@ -1742,7 +1783,74 @@ class AppLocalizations {
   String get remote {
     return Intl.message('Remote', name: 'remote', desc: '', args: []);
   }
+  
+  /// `Your subscription is unlimited`
+  String get subscriptionUnlimited {
+    return Intl.message(
+      'Your subscription is unlimited',
+      name: 'subscriptionUnlimited',
+    );
+  }
+  /// `Your subscription is perpetual`
+  String get subscriptionEternal {
+    return Intl.message(
+      'Your subscription is perpetual',
+      name: 'subscriptionEternal',
+      desc: '',
+      args: [],
+    );
+  }
 
+  /// `Your traffic is unlimited`
+  String get trafficUnlimited {
+    return Intl.message(
+      'Your traffic is unlimited',
+      name: 'trafficUnlimited',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Days until expiration: {days}`
+  String daysUntilExpiration(Object days) {
+    return Intl.message(
+      'Days until expiration: $days',
+      name: 'daysUntilExpiration',
+      desc: '',
+      args: [days],
+    );
+  }
+
+  /// `Subscription Expires Soon`
+  String get subscriptionExpiresSoon {
+    return Intl.message(
+      'Subscription Expires Soon',
+      name: 'subscriptionExpiresSoon',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your subscription will expire in {days} days.`
+  String subscriptionExpiresInDays(Object days) {
+    return Intl.message(
+      'Your subscription will expire in $days days.',
+      name: 'subscriptionExpiresInDays',
+      desc: '',
+      args: [days],
+    );
+  }
+
+  /// `Renew`
+  String get renew {
+    return Intl.message(
+      'Renew',
+      name: 'renew',
+      desc: '',
+      args: [],
+    );
+  }
+  
   /// `Backup local data to WebDAV`
   String get remoteBackupDesc {
     return Intl.message(

@@ -12,6 +12,7 @@ import 'package:flclashx/plugins/app.dart';
 import 'package:flclashx/providers/providers.dart';
 import 'package:flclashx/state.dart';
 import 'package:flclashx/widgets/dialog.dart';
+import 'package:flclashx/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:path/path.dart';
@@ -172,6 +173,7 @@ class AppController {
   _ref
       .read(profilesProvider.notifier)
       .setProfile(newProfile.copyWith(isUpdating: false));
+
   if (profile.id == _ref.read(currentProfileIdProvider)) {
     applyProfileDebounce(silence: true);
   }
@@ -677,24 +679,27 @@ class AppController {
   final commonScaffoldState = globalState.homeScaffoldKey.currentState;
   if (commonScaffoldState?.mounted != true) return;
 
-  final tempProfile = Profile.normal(url: url);
-
   try {
     final profile = await commonScaffoldState?.loadingRun<Profile>(
       () async {
         final prefs = await SharedPreferences.getInstance();
         final shouldSend = prefs.getBool('sendDeviceHeaders') ?? true;
-        return await tempProfile.update(shouldSendHeaders: shouldSend);
+        return await Profile.normal(url: url).update(shouldSendHeaders: shouldSend);
       },
       title: "${appLocalizations.add}${appLocalizations.profile}",
     );
 
     if (profile != null) {
-      if (profile.hideMode == true) {
-        final appSettingsNotifier = _ref.read(appSettingProvider.notifier);
-        appSettingsNotifier.updateState(
-          (state) => state.copyWith(dashboardWidgets: [DashboardWidget.announce]),
-        );
+      if (profile.dashboardLayout != null && profile.dashboardLayout!.isNotEmpty) {
+
+        final newLayout = DashboardWidgetParser.parseLayout(profile.dashboardLayout);
+
+        if (newLayout.isNotEmpty) {
+          final appSettingsNotifier = _ref.read(appSettingProvider.notifier);
+          appSettingsNotifier.updateState(
+            (state) => state.copyWith(dashboardWidgets: newLayout),
+          );
+        }
       }
 
       await addProfile(profile);

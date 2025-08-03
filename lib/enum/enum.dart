@@ -414,6 +414,29 @@ enum DashboardWidget {
   }
 }
 
+extension DashboardWidgetParser on DashboardWidget {
+  static List<DashboardWidget> parseLayout(String? layoutString) {
+    if (layoutString == null || layoutString.isEmpty) {
+      return [];
+    }
+
+    final widgetNames = layoutString.split(',').map((e) => e.trim().toLowerCase()).toList();
+    final List<DashboardWidget> result = [];
+
+    for (final name in widgetNames) {
+      try {
+        final widget = DashboardWidget.values.firstWhere(
+          (e) => e.name.toLowerCase() == name,
+        );
+        result.add(widget);
+      } catch (e) {
+        print('no data widget "$name"');
+      }
+    }
+    return result;
+  }
+}
+
 enum GeodataLoader {
   standard,
   memconservative,

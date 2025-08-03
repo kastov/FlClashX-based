@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:intl/intl.dart';
 
 import 'package:flclashx/common/common.dart';
 import 'package:flclashx/enum/enum.dart';
@@ -11,7 +12,6 @@ import 'package:flclashx/views/profiles/override_profile.dart';
 import 'package:flclashx/views/profiles/scripts.dart';
 import 'package:flclashx/widgets/widgets.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'add_profile.dart';
@@ -90,7 +90,7 @@ class _ProfilesViewState extends State<ProfilesView> with PageMixin {
             showExtend(
               context,
               builder: (_, type) {
-                return ScriptsView();
+                return const ScriptsView();
               },
             );
           },
@@ -288,16 +288,75 @@ class _ProfileItemState extends State<ProfileItem> {
 
   List<Widget> _buildUrlProfileInfo(BuildContext context) {
     final subscriptionInfo = widget.profile.subscriptionInfo;
-    return [
-      const SizedBox(
-        height: 8,
-      ),
-      if (subscriptionInfo != null)
-        SubscriptionInfoView(
-          subscriptionInfo: subscriptionInfo,
+
+    if (subscriptionInfo == null) {
+      return [
+        Text(
+          widget.profile.lastUpdateDate?.lastUpdateTimeDesc ?? "",
+          style: context.textTheme.labelMedium?.toLight,
         ),
+      ];
+    }
+
+    final bool isUnlimited = subscriptionInfo.total == 0;
+
+    final expireDate = subscriptionInfo.expire > 0
+        ? DateFormat('dd.MM.yyyy').format(
+            DateTime.fromMillisecondsSinceEpoch(subscriptionInfo.expire * 1000))
+        : "N/A";
+
+    return [
+      const SizedBox(height: 4),
+      if (!isUnlimited)
+        Builder(builder: (context) {
+          final totalTraffic = TrafficValue(value: subscriptionInfo.total);
+          final usedTrafficValue =
+              subscriptionInfo.upload + subscriptionInfo.download;
+          final usedTraffic = TrafficValue(value: usedTrafficValue);
+
+          double progress = 0.0;
+          if (subscriptionInfo.total > 0) {
+            progress = usedTrafficValue / subscriptionInfo.total;
+          }
+          progress = progress.clamp(0.0, 1.0);
+
+          Color progressColor = Colors.green;
+          if (progress > 0.9) {
+            progressColor = Colors.red;
+          } else if (progress > 0.7) {
+            progressColor = Colors.orange;
+          }
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                '${appLocalizations.traffic} ${usedTraffic.showValue} ${usedTraffic.showUnit} / ${totalTraffic.showValue} ${totalTraffic.showUnit}',
+                style: context.textTheme.bodySmall,
+              ),
+              const SizedBox(height: 6),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: LinearProgressIndicator(
+                  value: progress,
+                  minHeight: 6,
+                  backgroundColor:
+                      Theme.of(context).colorScheme.surfaceContainerHighest,
+                  valueColor: AlwaysStoppedAnimation<Color>(progressColor),
+                ),
+              ),
+            ],
+          );
+        }),
+      const SizedBox(height: 6),
       Text(
-        widget.profile.lastUpdateDate?.lastUpdateTimeDesc ?? "",
+      expireDate != "N/A"
+          ? '${appLocalizations.expiresOn} $expireDate'
+          : appLocalizations.subscriptionUnlimited,
+      style: context.textTheme.bodySmall,
+      ),
+      const SizedBox(height: 4),
+      Text(
+        '${appLocalizations.updated} ${widget.profile.lastUpdateDate?.lastUpdateTimeDesc ?? ""}',
         style: context.textTheme.labelMedium?.toLight,
       ),
     ];
@@ -353,125 +412,128 @@ class _ProfileItemState extends State<ProfileItem> {
           : () {
               widget.onChanged(widget.profile.id);
             },
-      child: ListItem(
-        key: Key(widget.profile.id),
-        horizontalTitleGap: 16,
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        trailing: SizedBox(
-          height: 40,
-          width: 40,
-          child: FadeThroughBox(
-            child: widget.profile.isUpdating
-                ? const Padding(
-                    padding: EdgeInsets.all(8),
-                    child: CircularProgressIndicator(),
-                  )
-                : CommonPopupBox(
-                    popup: CommonPopupMenu(
-                      items: [
-                        if (_isTV)
-                          PopupMenuItemData(
-                            icon: Icons.check_circle_outline,
-                            label: appLocalizations.selectProfile,
-                            onPressed: () {
-                              widget.onChanged(widget.profile.id);
-                            },
-                          ),
-                        PopupMenuItemData(
-                          icon: Icons.edit_outlined,
-                          label: appLocalizations.edit,
-                          onPressed: () {
-                            _handleShowEditExtendPage(context);
-                          },
-                        ),
-                        if (widget.profile.type == ProfileType.url) ...[
-                          PopupMenuItemData(
-                            icon: Icons.sync_alt_sharp,
-                            label: appLocalizations.sync,
-                            onPressed: () {
-                              updateProfile();
-                            },
-                          ),
-                        ],
-                        if (system.isMobile && !_isTV)
-                          PopupMenuItemData(
-                            icon: Icons.tv_outlined,
-                            label: appLocalizations.sendToTv,
-                            onPressed: () {
-                              BaseNavigator.push(context,
-                                  SendToTvPage(profileUrl: widget.profile.url));
-                            },
-                          ),
-                        PopupMenuItemData(
-                          icon: Icons.extension_outlined,
-                          label: appLocalizations.override,
-                          onPressed: () {
-                            _handlePushGenProfilePage(
-                                context, widget.profile.id);
-                          },
-                        ),
-                        PopupMenuItemData(
-                          icon: Icons.file_copy_outlined,
-                          label: appLocalizations.exportFile,
-                          onPressed: () {
-                            _handleExportFile(context);
-                          },
-                        ),
-                        PopupMenuItemData(
-                          icon: Icons.delete_outlined,
-                          label: appLocalizations.delete,
-                          onPressed: () {
-                            _handleDeleteProfile(context);
-                          },
-                        ),
-                      ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: GestureDetector(
+                onTap: _isTV ? () => widget.onChanged(widget.profile.id) : null,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      widget.profile.label ?? widget.profile.id,
+                      style: context.textTheme.titleMedium,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
                     ),
-                    targetBuilder: (open) {
-                      return Focus(
-                        focusNode: _menuFocusNode,
-                        canRequestFocus: true,
-                        child: Material(
-                          color: _isMenuFocused
-                              ? Theme.of(context).focusColor
-                              : Colors.transparent,
-                          borderRadius: BorderRadius.circular(20),
-                          child: IconButton(
-                            onPressed: open,
-                            icon: const Icon(Icons.more_vert),
-                          ),
+                    ..._buildUrlProfileInfo(context)
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 40,
+              width: 40,
+              child: FadeThroughBox(
+                child: widget.profile.isUpdating
+                    ? const Padding(
+                        padding: EdgeInsets.all(8),
+                        child: CircularProgressIndicator(),
+                      )
+                    : CommonPopupBox(
+                        popup: CommonPopupMenu(
+                          items: [
+                            if (_isTV)
+                              PopupMenuItemData(
+                                icon: Icons.check_circle_outline,
+                                label: appLocalizations.selectProfile,
+                                onPressed: () {
+                                  widget.onChanged(widget.profile.id);
+                                },
+                              ),
+                            PopupMenuItemData(
+                              icon: Icons.edit_outlined,
+                              label: appLocalizations.edit,
+                              onPressed: () {
+                                _handleShowEditExtendPage(context);
+                              },
+                            ),
+                            if (widget.profile.type == ProfileType.url) ...[
+                              PopupMenuItemData(
+                                icon: Icons.sync_alt_sharp,
+                                label: appLocalizations.sync,
+                                onPressed: () {
+                                  updateProfile();
+                                },
+                              ),
+                            ],
+                            if (system.isMobile && !_isTV)
+                              PopupMenuItemData(
+                                icon: Icons.tv_outlined,
+                                label: appLocalizations.sendToTv,
+                                onPressed: () {
+                                  BaseNavigator.push(context,
+                                      SendToTvPage(profileUrl: widget.profile.url));
+                                },
+                              ),
+                              if (widget.profile.supportUrl != null && widget.profile.supportUrl!.isNotEmpty && !_isTV )
+                            PopupMenuItemData(
+                              icon: widget.profile.supportUrl!.toLowerCase().contains('t.me')
+                              ? Icons.telegram
+                              : Icons.insert_link,
+                              label: appLocalizations.support,
+                              onPressed: () {
+                                globalState.openUrl(widget.profile.supportUrl!);
+                              },
+                            ),
+                            PopupMenuItemData(
+                              icon: Icons.extension_outlined,
+                              label: appLocalizations.override,
+                              onPressed: () {
+                                _handlePushGenProfilePage(
+                                    context, widget.profile.id);
+                              },
+                            ),
+                            PopupMenuItemData(
+                              icon: Icons.file_copy_outlined,
+                              label: appLocalizations.exportFile,
+                              onPressed: () {
+                                _handleExportFile(context);
+                              },
+                            ),
+                            PopupMenuItemData(
+                              icon: Icons.delete_outlined,
+                              label: appLocalizations.delete,
+                              onPressed: () {
+                                _handleDeleteProfile(context);
+                              },
+                            ),
+                          ],
                         ),
-                      );
-                    },
-                  ),
-          ),
-        ),
-        title: Container(
-          padding: const EdgeInsets.symmetric(vertical: 4),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                widget.profile.label ?? widget.profile.id,
-                style: context.textTheme.titleMedium,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
+                        targetBuilder: (open) {
+                          return Focus(
+                            focusNode: _menuFocusNode,
+                            canRequestFocus: true,
+                            child: Material(
+                              color: _isMenuFocused
+                                  ? Theme.of(context).focusColor
+                                  : Colors.transparent,
+                              borderRadius: BorderRadius.circular(20),
+                              child: IconButton(
+                                onPressed: open,
+                                icon: const Icon(Icons.more_vert),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
               ),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ...switch (widget.profile.type) {
-                    ProfileType.file => _buildFileProfileInfo(context),
-                    ProfileType.url => _buildUrlProfileInfo(context),
-                  },
-                ],
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
-        tileTitleAlignment: ListTileTitleAlignment.titleHeight,
       ),
     );
   }

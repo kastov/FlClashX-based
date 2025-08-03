@@ -9,10 +9,13 @@ class AnnounceWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final encodedText = ref.watch(
-      currentProfileProvider.select((profile) => profile?.announceText),
-    );
+    final profile = ref.watch(currentProfileProvider);
 
+    if (profile == null) {
+      return const SizedBox.shrink();
+    }
+
+    final encodedText = profile.announceText;
     String? announceText;
 
     if (encodedText != null && encodedText.isNotEmpty) {
@@ -24,7 +27,6 @@ class AnnounceWidget extends ConsumerWidget {
         final normalized = base64.normalize(textToDecode);
         announceText = utf8.decode(base64.decode(normalized));
       } catch (e) {
-        print('Не удалось декодировать анонс из base64: $e');
         announceText = encodedText;
       }
     }
@@ -35,24 +37,12 @@ class AnnounceWidget extends ConsumerWidget {
 
     return AbsorbPointer(
       child: CommonCard(
+        onPressed: null,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Icon(
-                Icons.campaign_outlined,
-                color: Theme.of(context).colorScheme.primary,
-                size: 20,
-              ),
-              const SizedBox(width: 12),
-              Expanded(
-                child: SelectableText(
-                  announceText,
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-              ),
-            ],
+          child: SelectableText(
+            announceText,
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
         ),
       ),
