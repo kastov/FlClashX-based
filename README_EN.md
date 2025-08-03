@@ -101,3 +101,4 @@ The following actions are supported:
 The easiest way to support the developers is to click the star (⭐) at the top of the page.<br>
 If you want to support with a small donation, you can <a href="">do so here.</a>
 </p>
+**TON USDT:** `UQDSfrJ_k1BdsknhdR_zj4T3Is3OdMylD8PnDJ9mxO35i-TE`
