@@ -95,6 +95,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "appAccessControl": MessageLookupByLibrary.simpleMessage(
       "App access control",
     ),
+    "subscriptionExpiresOn": (date) => "Your subscription expires on ${date}",
     "appDesc": MessageLookupByLibrary.simpleMessage(
       "Processing app related settings",
     ),
@@ -106,9 +107,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCheckUpdate": MessageLookupByLibrary.simpleMessage(
       "Auto check updates",
     ),
+    "traffic": MessageLookupByLibrary.simpleMessage("Traffic:"),
+    "expiresOn": MessageLookupByLibrary.simpleMessage("Expires on:"),
     "autoCheckUpdateDesc": MessageLookupByLibrary.simpleMessage(
       "Auto check for updates when the app starts",
     ),
+    "support": MessageLookupByLibrary.simpleMessage("Support"),
+
     "autoCloseConnections": MessageLookupByLibrary.simpleMessage(
       "Auto close connections",
     ),
@@ -130,6 +135,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoUpdateInterval": MessageLookupByLibrary.simpleMessage(
       "Auto update interval (minutes)",
     ),
+    "subscriptionUnlimited": MessageLookupByLibrary.simpleMessage("No expiration date"),
     "backup": MessageLookupByLibrary.simpleMessage("Backup"),
     "backupAndRecovery": MessageLookupByLibrary.simpleMessage(
       "Backup and Recovery",
@@ -151,6 +157,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "cacheCorrupt": MessageLookupByLibrary.simpleMessage(
       "The cache is corrupt. Do you want to clear it?",
     ),
+    "subscriptionEternal": MessageLookupByLibrary.simpleMessage("Your subscription is perpetual"),
+    "trafficUnlimited": MessageLookupByLibrary.simpleMessage("Your traffic is unlimited"),
+    "daysUntilExpiration": (days) => "Days until expiration: ${days}",
+    "subscriptionExpiresSoon": MessageLookupByLibrary.simpleMessage("Subscription Expires Soon"),
+    "subscriptionExpiresInDays": (days) => "Your subscription will expire in ${days} days.",
+    "renew": MessageLookupByLibrary.simpleMessage("Renew"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancelFilterSystemApp": MessageLookupByLibrary.simpleMessage(
       "Cancel filter system app",
@@ -234,6 +246,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "dnsDesc": MessageLookupByLibrary.simpleMessage(
       "Update DNS related settings",
+    ),
+    "profileAddedSuccess": MessageLookupByLibrary.simpleMessage(
+      "Sucess add profile",
     ),
     "dnsMode": MessageLookupByLibrary.simpleMessage("DNS mode"),
     "doYouWantToPass": MessageLookupByLibrary.simpleMessage(

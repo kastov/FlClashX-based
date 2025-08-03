@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'dart:convert';
 import 'package:flclashx/common/common.dart';
-import 'package:flclashx/state.dart';
 import 'package:flutter/material.dart';
 import 'package:network_info_plus/network_info_plus.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -34,22 +33,20 @@ class _ReceiveProfileDialogState extends State<ReceiveProfileDialog> {
 
       final router = shelf_router.Router();
       router.post('/add-profile', (shelf.Request request) async {
-  final body = await request.readAsString();
-  final json = jsonDecode(body);
-  final url = json['url'] as String?;
+        final body = await request.readAsString();
+        final json = jsonDecode(body);
+        final url = json['url'] as String?;
 
-  if (url != null && url.isNotEmpty) {
-    print('Получена ссылка на подписку: $url');
-    if (mounted) Navigator.of(context).pop();
-    globalState.appController.addProfileFormURL(url);
-    return shelf.Response.ok('Профиль успешно добавлен');
-  }
-  return shelf.Response.badRequest(body: 'URL не найден');
-});
-
+        if (url != null && url.isNotEmpty) {
+          print('Received subscription link: $url');
+          if (mounted) Navigator.of(context).pop(url);
+          return shelf.Response.ok('Link received by TV');
+        }
+        return shelf.Response.badRequest(body: 'URL not found');
+      });
 
       _server = await shelf_io.serve(router, ip!, port);
-      print('Сервер запущен на http://${_server?.address.host}:${_server?.port}');
+      print('Server started at http://${_server?.address.host}:${_server?.port}');
 
       setState(() {
         _qrData = jsonEncode({
@@ -60,7 +57,7 @@ class _ReceiveProfileDialogState extends State<ReceiveProfileDialog> {
         _isLoading = false;
       });
     } catch (e) {
-      print('Ошибка при запуске сервера: $e');
+      print('Error starting server: $e');
       if (mounted) Navigator.of(context).pop();
     }
   }
@@ -68,12 +65,13 @@ class _ReceiveProfileDialogState extends State<ReceiveProfileDialog> {
   @override
   void dispose() {
     _server?.close(force: true);
-    print('Сервер остановлен');
+    print('Server stopped');
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return AlertDialog(
       title: Text(appLocalizations.receiveSubscriptionTitle),
       content: SizedBox(
@@ -82,13 +80,23 @@ class _ReceiveProfileDialogState extends State<ReceiveProfileDialog> {
         child: _isLoading
             ? const Center(child: CircularProgressIndicator())
             : _qrData != null
-                ? QrImageView(
-                    data: _qrData!,
-                    version: QrVersions.auto,
-                    size: 300.0,
-                    backgroundColor: Colors.white,
+                ? Center(
+                    child: QrImageView(
+                      data: _qrData!,
+                      version: QrVersions.auto,
+                      size: 300.0,
+                      backgroundColor: Colors.transparent,
+                      dataModuleStyle: QrDataModuleStyle(
+                        color: theme.colorScheme.onSurface,
+                        dataModuleShape: QrDataModuleShape.square,
+                      ),
+                      eyeStyle: QrEyeStyle(
+                        color: theme.colorScheme.onSurface,
+                        eyeShape: QrEyeShape.square,
+                      ),
+                    ),
                   )
-                : const Center(child: Text('Не удалось получить IP-адрес')),
+                : Center(child: Text('Could not get IP address')),
       ),
       actions: [
         TextButton(

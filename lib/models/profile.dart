@@ -8,7 +8,6 @@ import 'package:flclashx/common/common.dart';
 import 'package:flclashx/enum/enum.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flclashx/utils/device_info_service.dart';
-import 'package:flclashx/state.dart';
 
 import 'clash_config.dart';
 
@@ -53,6 +52,8 @@ class Profile with _$Profile {
     String? label,
     String? currentGroupName,
     String? announceText,
+    String? supportUrl,
+    String? dashboardLayout,
     @Default("") String url,
     DateTime? lastUpdateDate,
     required Duration autoUpdateDuration,
@@ -64,7 +65,6 @@ class Profile with _$Profile {
     @JsonKey(includeToJson: false, includeFromJson: false)
     @Default(false)
     bool isUpdating,
-    bool? hideMode,
 
   }) = _Profile;
 
@@ -193,13 +193,17 @@ extension ProfileExtension on Profile {
     final disposition = response.headers.value("content-disposition");
     final userinfo = response.headers.value('subscription-userinfo');
     final announce = response.headers.value('announce');
-    final hideModeHeader = response.headers.value('flclashx-hidemode');
-      bool? hideModeValue;
-      if (hideModeHeader == 'true') {
-        hideModeValue = true;
-      } else if (hideModeHeader == 'false') {
-        hideModeValue = false;
+    final updateIntervalHeader = response.headers.value('profile-update-interval');
+    final supportUrl = response.headers.value('support-url');
+    final dashboardHeader = response.headers.value('flclashx-widgets');
+    Duration? durationFromHeader;
+
+    if (updateIntervalHeader != null) {
+      final hours = int.tryParse(updateIntervalHeader);
+      if (hours != null && hours > 0) {
+        durationFromHeader = Duration(hours: hours);
       }
+    }
 
     final responseData = response.data;
     if (responseData == null) {
@@ -210,7 +214,9 @@ extension ProfileExtension on Profile {
       label: label ?? utils.getFileNameForDisposition(disposition) ?? id,
       subscriptionInfo: SubscriptionInfo.formHString(userinfo),
       announceText: announce,
-      hideMode: hideModeValue,
+      supportUrl: supportUrl,
+      dashboardLayout: dashboardHeader,
+      autoUpdateDuration: durationFromHeader ?? autoUpdateDuration,
     ).saveFile(responseData);
   }
 

@@ -47,12 +47,15 @@ class AddProfileView extends StatelessWidget {
     }
   }
 
-  _handleReceiveFromPhone() {
-    showDialog(
-      context: context,
-      builder: (_) => const ReceiveProfileDialog(),
-    );
+  _handleReceiveFromPhone() async {
+  final String? url = await showDialog<String>(
+    context: context,
+    builder: (_) => const ReceiveProfileDialog(),
+  );
+  if (url != null && url.isNotEmpty) {
+    _handleAddProfileFormURL(url);
   }
+}
 
   @override
   Widget build(BuildContext context) {

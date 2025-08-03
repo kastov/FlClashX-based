@@ -82,18 +82,21 @@ class MessageLookup extends MessageLookupByLibrary {
       "Разрешить приложениям обходить VPN",
     ),
     "addFromPhoneTitle": MessageLookupByLibrary.simpleMessage("Добавить с телефона"),
-    "addFromPhoneSubtitle": MessageLookupByLibrary.simpleMessage("Покажите QR-код на телефоне для сканирования"),
+    "addFromPhoneSubtitle": MessageLookupByLibrary.simpleMessage("Отсканируйте QR-код на телефоне"),
     "sendToTv": MessageLookupByLibrary.simpleMessage("Отправить на ТВ"),
     "receiveSubscriptionTitle": MessageLookupByLibrary.simpleMessage("Получить подписку с телефона"),
     "receiveSubscriptionButton": MessageLookupByLibrary.simpleMessage("Получить с телефона"),
-    "receiveSubscriptionSubtitle": MessageLookupByLibrary.simpleMessage("Покажите QR-код на телефоне для сканирования"),
+    "receiveSubscriptionSubtitle": MessageLookupByLibrary.simpleMessage("Отсканируйте QR-код на телефоне"),
     "sendToTvTitle": MessageLookupByLibrary.simpleMessage("Отправить на ТВ"),
     "successTitle": MessageLookupByLibrary.simpleMessage("Успех"),
     "errorTitle": MessageLookupByLibrary.simpleMessage("Ошибка"),
     "sentSuccessfullyMessage": MessageLookupByLibrary.simpleMessage("Подписка успешно отправлена на ТВ."),
-    "noActiveProfileMessage": MessageLookupByLibrary.simpleMessage("Нет активной подписки для отправки."),
     "invalidQrMessage": MessageLookupByLibrary.simpleMessage("Неверный QR-код или не удалось отправить данные."),
     "selectProfile": MessageLookupByLibrary.simpleMessage("Выбрать"),
+    "support": MessageLookupByLibrary.simpleMessage("Поддержка"),
+    "subscriptionExpiresOn": (date) => "Ваша подписка заканчивается ${date}",
+    "traffic": MessageLookupByLibrary.simpleMessage("Трафик:"),
+    "expiresOn": MessageLookupByLibrary.simpleMessage("Подписка действительна до:"),
     "allowBypassDesc": MessageLookupByLibrary.simpleMessage(
       "Некоторые приложения могут обходить VPN при включении",
     ),
@@ -101,6 +104,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "allowLanDesc": MessageLookupByLibrary.simpleMessage(
       "Разрешить доступ к прокси через локальную сеть",
     ),
+    "updated": MessageLookupByLibrary.simpleMessage("Обновлено:"),
     "app": MessageLookupByLibrary.simpleMessage("Приложение"),
     "appAccessControl": MessageLookupByLibrary.simpleMessage(
       "Контроль доступа приложений",
@@ -119,6 +123,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoCheckUpdateDesc": MessageLookupByLibrary.simpleMessage(
       "Автоматически проверять обновления при запуске приложения",
     ),
+    "subscriptionUnlimited": MessageLookupByLibrary.simpleMessage("Ваша подписка вечная"),
+
     "autoCloseConnections": MessageLookupByLibrary.simpleMessage(
       "Автоматическое закрытие соединений",
     ),
@@ -133,6 +139,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "autoRunDesc": MessageLookupByLibrary.simpleMessage(
       "Автоматически подключаться при запуске приложения",
     ),
+    "subscriptionEternal": MessageLookupByLibrary.simpleMessage("Ваша подписка вечная"),
+    "trafficUnlimited": MessageLookupByLibrary.simpleMessage("Ваш трафик безлимитный"),
+    "daysUntilExpiration": (days) => "Дней до окончания: ${days}",
+    "subscriptionExpiresSoon": MessageLookupByLibrary.simpleMessage("Подписка скоро закончится"),
+    "subscriptionExpiresInDays": (days) => "Ваша подписка закончится через ${days} дня.",
+    "renew": MessageLookupByLibrary.simpleMessage("Продлить"),
     "autoSetSystemDns": MessageLookupByLibrary.simpleMessage(
       "Автоматическая настройка системного DNS",
     ),
@@ -474,6 +486,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "nullProfileDesc": MessageLookupByLibrary.simpleMessage(
       "Нет профиля, пожалуйста, добавьте профиль",
+    ),
+    "profileAddedSuccess": MessageLookupByLibrary.simpleMessage(
+      "Профиль добавлен успешно",
     ),
     "nullTip": m4,
     "numberTip": m5,

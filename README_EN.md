@@ -6,9 +6,11 @@
 
 ## FlClashX
 
-[![Downloads](https://img.shields.io/github/downloads/pluralplay/FlClashX/total?style=flat-square&logo=github)](https://github.com/pluralplay/FlClashX/releases/)[![Last Version](https://img.shields.io/github/release/pluralplay/FlClashX/all.svg?style=flat-square)](https://github.com/pluralplay/FlClashX/releases/)[![License](https://img.shields.io/github/license/pluralplay/FlClashX?style=flat-square)](LICENSE)
+[![Downloads](https://img.shields.io/github/downloads/pluralplay/FlClashX/total?style=flat-square&logo=github)](https://github.com/pluralplay/FlClashX/releases/)
+[![Last Version](https://img.shields.io/github/release/pluralplay/FlClashX/all.svg?style=flat-square)](https://github.com/pluralplay/FlClashX/releases/)
+[![License](https://img.shields.io/github/license/pluralplay/FlClashX?style=flat-square)](LICENSE)
 
-[![Channel](https://img.shields.io/badge/Telegram-Channel-blue?style=flat-square&logo=telegram)](https://t.me/FlClash)
+[![Channel](https://img.shields.io/badge/Telegram-Chat-blue?style=flat-square&logo=telegram)](https://t.me/FlClash)
 
 A fork of the multi-platform proxy client FlClash based on ClashMeta, simple and easy to use, open source and ad-free.
 
@@ -22,27 +24,66 @@ on Mobile:
     <img alt="mobile" src="snapshots/mobile.gif">
 </p>
 
-## Features
+## Added Functionality:
 
-✈️ Send HWID to the panel (Works only with https://github.com/remnawave/panel">Remnawave)
+🛠️ Fixed default settings: process search mode on, TUN mode on, system proxy mode off, proxy list display mode set to 'list'.
 
-💻 Added a new "Announcements" widget. It fetches announcements from the panel to the widget. (Works only with https://github.com/remnawave/panel">Remnawave)
+🇷🇺 Added Russian language to the installer and redesigned the localization in the application.
 
-## Use
+✈️ Transmit HWID to the panel (Works only with <a href="">Remnawave</a>).
+
+💻 Added a new "Announcements" widget. It transmits announcements from the panel to the widget. (Works only with <a href="">Remnawave</a>).
+
+📺 Optimized controls for Android TV.
+
++ Added a "Paste" button to the menu for adding a subscription via a link.
+
++ Added a profile selection button.
+
++ Added the ability to transfer a profile from the mobile app via a QR code.
+
+🪪 Redesigned the profile card:
+
++ Used traffic amount with a color-changing traffic bar (not displayed if traffic is unlimited).
+
++ Subscription expiration date (if the year is 2099, it displays "permanent subscription").
+
++ Added a new "Support" button in the profile, which pulls the supportUrl from the panel.
+
++ The autoupdateinterval for the profile is now correctly transmitted from the panel.
+
+🌐 Added parsing of custom headers from the subscription page:
+
++ flclashx-widgets: arranges widgets in the order received from the subscription.
+| Value  | Name widget |
+| :---: | ------------- |
+| `announce`  | Announce Badge  |
+| `networkSpeed`  | Network speed |
+| `outboundModeV2`  | Proxy mode (new type)  |
+| `outboundMode`  | Proxy mode (old type)  |
+| `trafficUsage`  | Traffic usage  |
+| `networkDetection`  | Determining location and IP  |
+| `tunButton`  | TUN button (Desktop only)  |
+| `vpnButton`  | VPN button (Android only)  |
+| `systemProxyButton`  | System Proxy Button (Desktop only)  |
+| `intranetIp`  | Local IP-Address |
+| `memoryInfo`  | Memory usage  |
+
+Usage:
+```bash
+    flclashx-widgets: announce,networkSpeed,outboundModeV2,outboundMode,trafficUsage,networkDetection,tunButton,vpnButton,systemProxyButton,intranetIp,memoryInfo
+```
+
+## Application Usage
 
 ### Linux
-
-⚠️ Make sure to install the following dependencies before using them
-
+⚠️ Before use, ensure the following dependencies are installed:
    ```bash
     sudo apt-get install libayatana-appindicator3-dev
     sudo apt-get install libkeybinder-3.0-dev
    ```
-
 ### Android
-
-Support the following actions
-
+The following actions are supported:
    ```bash
     com.follow.clashx.action.START
     
@@ -51,67 +92,12 @@ Support the following actions
     com.follow.clashx.action.CHANGE
    ```
 
+
 ## Download
-
-<a href="https://chen08209.github.io/FlClash-fdroid-repo/repo?fingerprint=789D6D32668712EF7672F9E58DEEB15FBD6DCEEC5AE7A4371EA72F2AAE8A12FD"><img alt="Get it on F-Droid" src="snapshots/get-it-on-fdroid.svg" width="200px"/></a> <a href="https://github.com/pluralplay/FlClashX/releases"><img alt="Get it on GitHub" src="snapshots/get-it-on-github.svg" width="200px"/></a>
-
-## Build
-
-1. Update submodules
-   ```bash
-   git submodule update --init --recursive
-   ```
-
-2. Install `Flutter` and `Golang` environment
-
-3. Build Application
-
-    - android
-
-        1. Install  `Android SDK` ,  `Android NDK`
-
-        2. Set `ANDROID_NDK` environment variables
-
-        3. Run Build script
-
-           ```bash
-           dart .\setup.dart android
-           ```
-
-    - windows
-
-        1. You need a windows client
-
-        2. Install  `Gcc`，`Inno Setup`
-
-        3. Run build script
-
-           ```bash
-           dart .\setup.dart windows --arch <arm64 | amd64>
-           ```
-
-    - linux
-
-        1. You need a linux client
-
-        2. Run build script
-
-           ```bash
-           dart .\setup.dart linux --arch <arm64 | amd64>
-           ```
-
-    - macOS
-
-        1. You need a macOS client
-
-        2. Run build script
-
-           ```bash
-           dart .\setup.dart macos --arch <arm64 | amd64>
-           ```
+<a href=""><img alt="Get it on GitHub" src="snapshots/get-it-on-github.svg" width="200px"/></a>
 
 ## Star
-
-The easiest way to support developers is to click on the star (⭐) at the top of the page.
-
-If you want support donate me, link <a href="https://t.me/tribute/app?startapp=dtyh">this</a>
+<p style="text-align: center;">
+The easiest way to support the developers is to click the star (⭐) at the top of the page.<br>
+If you want to support with a small donation, you can <a href="">do so here.</a>
+</p>
