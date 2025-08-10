@@ -234,6 +234,8 @@ mixin _$Profile {
   String? get announceText => throw _privateConstructorUsedError;
   String? get supportUrl => throw _privateConstructorUsedError;
   String? get dashboardLayout => throw _privateConstructorUsedError;
+  String? get proxiesView => throw _privateConstructorUsedError;
+  String? get customBehavior => throw _privateConstructorUsedError;
   String get url => throw _privateConstructorUsedError;
   DateTime? get lastUpdateDate => throw _privateConstructorUsedError;
   Duration get autoUpdateDuration => throw _privateConstructorUsedError;
@@ -244,6 +246,7 @@ mixin _$Profile {
   OverrideData get overrideData => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get isUpdating => throw _privateConstructorUsedError;
+  bool? get denyWidgetEditing => throw _privateConstructorUsedError;
 
   /// Serializes this Profile to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -266,6 +269,8 @@ abstract class $ProfileCopyWith<$Res> {
       String? announceText,
       String? supportUrl,
       String? dashboardLayout,
+      String? proxiesView,
+      String? customBehavior,
       String url,
       DateTime? lastUpdateDate,
       Duration autoUpdateDuration,
@@ -274,7 +279,8 @@ abstract class $ProfileCopyWith<$Res> {
       Map<String, String> selectedMap,
       Set<String> unfoldSet,
       OverrideData overrideData,
-      @JsonKey(includeToJson: false, includeFromJson: false) bool isUpdating});
+      @JsonKey(includeToJson: false, includeFromJson: false) bool isUpdating,
+      bool? denyWidgetEditing});
 
   $SubscriptionInfoCopyWith<$Res>? get subscriptionInfo;
   $OverrideDataCopyWith<$Res> get overrideData;
@@ -301,6 +307,8 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? announceText = freezed,
     Object? supportUrl = freezed,
     Object? dashboardLayout = freezed,
+    Object? proxiesView = freezed,
+    Object? customBehavior = freezed,
     Object? url = null,
     Object? lastUpdateDate = freezed,
     Object? autoUpdateDuration = null,
@@ -310,6 +318,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? unfoldSet = null,
     Object? overrideData = null,
     Object? isUpdating = null,
+    Object? denyWidgetEditing = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -335,6 +344,14 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       dashboardLayout: freezed == dashboardLayout
           ? _value.dashboardLayout
           : dashboardLayout // ignore: cast_nullable_to_non_nullable
+              as String?,
+      proxiesView: freezed == proxiesView
+          ? _value.proxiesView
+          : proxiesView // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customBehavior: freezed == customBehavior
+          ? _value.customBehavior
+          : customBehavior // ignore: cast_nullable_to_non_nullable
               as String?,
       url: null == url
           ? _value.url
@@ -372,6 +389,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
           ? _value.isUpdating
           : isUpdating // ignore: cast_nullable_to_non_nullable
               as bool,
+      denyWidgetEditing: freezed == denyWidgetEditing
+          ? _value.denyWidgetEditing
+          : denyWidgetEditing // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ) as $Val);
   }
 
@@ -414,6 +435,8 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String? announceText,
       String? supportUrl,
       String? dashboardLayout,
+      String? proxiesView,
+      String? customBehavior,
       String url,
       DateTime? lastUpdateDate,
       Duration autoUpdateDuration,
@@ -422,7 +445,8 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       Map<String, String> selectedMap,
       Set<String> unfoldSet,
       OverrideData overrideData,
-      @JsonKey(includeToJson: false, includeFromJson: false) bool isUpdating});
+      @JsonKey(includeToJson: false, includeFromJson: false) bool isUpdating,
+      bool? denyWidgetEditing});
 
   @override
   $SubscriptionInfoCopyWith<$Res>? get subscriptionInfo;
@@ -449,6 +473,8 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? announceText = freezed,
     Object? supportUrl = freezed,
     Object? dashboardLayout = freezed,
+    Object? proxiesView = freezed,
+    Object? customBehavior = freezed,
     Object? url = null,
     Object? lastUpdateDate = freezed,
     Object? autoUpdateDuration = null,
@@ -458,6 +484,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? unfoldSet = null,
     Object? overrideData = null,
     Object? isUpdating = null,
+    Object? denyWidgetEditing = freezed,
   }) {
     return _then(_$ProfileImpl(
       id: null == id
@@ -483,6 +510,14 @@ class __$$ProfileImplCopyWithImpl<$Res>
       dashboardLayout: freezed == dashboardLayout
           ? _value.dashboardLayout
           : dashboardLayout // ignore: cast_nullable_to_non_nullable
+              as String?,
+      proxiesView: freezed == proxiesView
+          ? _value.proxiesView
+          : proxiesView // ignore: cast_nullable_to_non_nullable
+              as String?,
+      customBehavior: freezed == customBehavior
+          ? _value.customBehavior
+          : customBehavior // ignore: cast_nullable_to_non_nullable
               as String?,
       url: null == url
           ? _value.url
@@ -520,6 +555,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
           ? _value.isUpdating
           : isUpdating // ignore: cast_nullable_to_non_nullable
               as bool,
+      denyWidgetEditing: freezed == denyWidgetEditing
+          ? _value.denyWidgetEditing
+          : denyWidgetEditing // ignore: cast_nullable_to_non_nullable
+              as bool?,
     ));
   }
 }
@@ -534,6 +573,8 @@ class _$ProfileImpl implements _Profile {
       this.announceText,
       this.supportUrl,
       this.dashboardLayout,
+      this.proxiesView,
+      this.customBehavior,
       this.url = "",
       this.lastUpdateDate,
       required this.autoUpdateDuration,
@@ -543,7 +584,8 @@ class _$ProfileImpl implements _Profile {
       final Set<String> unfoldSet = const {},
       this.overrideData = const OverrideData(),
       @JsonKey(includeToJson: false, includeFromJson: false)
-      this.isUpdating = false})
+      this.isUpdating = false,
+      this.denyWidgetEditing})
       : _selectedMap = selectedMap,
         _unfoldSet = unfoldSet;
 
@@ -562,6 +604,10 @@ class _$ProfileImpl implements _Profile {
   final String? supportUrl;
   @override
   final String? dashboardLayout;
+  @override
+  final String? proxiesView;
+  @override
+  final String? customBehavior;
   @override
   @JsonKey()
   final String url;
@@ -598,10 +644,12 @@ class _$ProfileImpl implements _Profile {
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   final bool isUpdating;
+  @override
+  final bool? denyWidgetEditing;
 
   @override
   String toString() {
-    return 'Profile(id: $id, label: $label, currentGroupName: $currentGroupName, announceText: $announceText, supportUrl: $supportUrl, dashboardLayout: $dashboardLayout, url: $url, lastUpdateDate: $lastUpdateDate, autoUpdateDuration: $autoUpdateDuration, subscriptionInfo: $subscriptionInfo, autoUpdate: $autoUpdate, selectedMap: $selectedMap, unfoldSet: $unfoldSet, overrideData: $overrideData, isUpdating: $isUpdating)';
+    return 'Profile(id: $id, label: $label, currentGroupName: $currentGroupName, announceText: $announceText, supportUrl: $supportUrl, dashboardLayout: $dashboardLayout, proxiesView: $proxiesView, customBehavior: $customBehavior, url: $url, lastUpdateDate: $lastUpdateDate, autoUpdateDuration: $autoUpdateDuration, subscriptionInfo: $subscriptionInfo, autoUpdate: $autoUpdate, selectedMap: $selectedMap, unfoldSet: $unfoldSet, overrideData: $overrideData, isUpdating: $isUpdating, denyWidgetEditing: $denyWidgetEditing)';
   }
 
   @override
@@ -619,6 +667,10 @@ class _$ProfileImpl implements _Profile {
                 other.supportUrl == supportUrl) &&
             (identical(other.dashboardLayout, dashboardLayout) ||
                 other.dashboardLayout == dashboardLayout) &&
+            (identical(other.proxiesView, proxiesView) ||
+                other.proxiesView == proxiesView) &&
+            (identical(other.customBehavior, customBehavior) ||
+                other.customBehavior == customBehavior) &&
             (identical(other.url, url) || other.url == url) &&
             (identical(other.lastUpdateDate, lastUpdateDate) ||
                 other.lastUpdateDate == lastUpdateDate) &&
@@ -635,7 +687,9 @@ class _$ProfileImpl implements _Profile {
             (identical(other.overrideData, overrideData) ||
                 other.overrideData == overrideData) &&
             (identical(other.isUpdating, isUpdating) ||
-                other.isUpdating == isUpdating));
+                other.isUpdating == isUpdating) &&
+            (identical(other.denyWidgetEditing, denyWidgetEditing) ||
+                other.denyWidgetEditing == denyWidgetEditing));
   }
 
   @JsonKey(includeFromJson: false, includeToJson: false)
@@ -648,6 +702,8 @@ class _$ProfileImpl implements _Profile {
       announceText,
       supportUrl,
       dashboardLayout,
+      proxiesView,
+      customBehavior,
       url,
       lastUpdateDate,
       autoUpdateDuration,
@@ -656,7 +712,8 @@ class _$ProfileImpl implements _Profile {
       const DeepCollectionEquality().hash(_selectedMap),
       const DeepCollectionEquality().hash(_unfoldSet),
       overrideData,
-      isUpdating);
+      isUpdating,
+      denyWidgetEditing);
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.
@@ -682,6 +739,8 @@ abstract class _Profile implements Profile {
       final String? announceText,
       final String? supportUrl,
       final String? dashboardLayout,
+      final String? proxiesView,
+      final String? customBehavior,
       final String url,
       final DateTime? lastUpdateDate,
       required final Duration autoUpdateDuration,
@@ -691,7 +750,8 @@ abstract class _Profile implements Profile {
       final Set<String> unfoldSet,
       final OverrideData overrideData,
       @JsonKey(includeToJson: false, includeFromJson: false)
-      final bool isUpdating}) = _$ProfileImpl;
+      final bool isUpdating,
+      final bool? denyWidgetEditing}) = _$ProfileImpl;
 
   factory _Profile.fromJson(Map<String, dynamic> json) = _$ProfileImpl.fromJson;
 
@@ -707,6 +767,10 @@ abstract class _Profile implements Profile {
   String? get supportUrl;
   @override
   String? get dashboardLayout;
+  @override
+  String? get proxiesView;
+  @override
+  String? get customBehavior;
   @override
   String get url;
   @override
@@ -726,6 +790,8 @@ abstract class _Profile implements Profile {
   @override
   @JsonKey(includeToJson: false, includeFromJson: false)
   bool get isUpdating;
+  @override
+  bool? get denyWidgetEditing;
 
   /// Create a copy of Profile
   /// with the given fields replaced by the non-null parameter values.

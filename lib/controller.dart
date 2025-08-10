@@ -170,9 +170,11 @@ class AppController {
   final newProfile = await profile.update(
     shouldSendHeaders: shouldSend,
   );
-  _ref
-      .read(profilesProvider.notifier)
-      .setProfile(newProfile.copyWith(isUpdating: false));
+  _ref.read(profilesProvider.notifier).setProfile(newProfile.copyWith(isUpdating: false));
+    
+  if (newProfile.customBehavior == 'update') {
+      _applyCustomViewSettings(newProfile);
+    }
 
   if (profile.id == _ref.read(currentProfileIdProvider)) {
     applyProfileDebounce(silence: true);
@@ -690,18 +692,7 @@ class AppController {
     );
 
     if (profile != null) {
-      if (profile.dashboardLayout != null && profile.dashboardLayout!.isNotEmpty) {
-
-        final newLayout = DashboardWidgetParser.parseLayout(profile.dashboardLayout);
-
-        if (newLayout.isNotEmpty) {
-          final appSettingsNotifier = _ref.read(appSettingProvider.notifier);
-          appSettingsNotifier.updateState(
-            (state) => state.copyWith(dashboardWidgets: newLayout),
-          );
-        }
-      }
-
+      _applyCustomViewSettings(profile);
       await addProfile(profile);
     }
   } catch (err) {
@@ -831,6 +822,60 @@ class AppController {
           ),
         );
   }
+
+  void _applyCustomViewSettings(Profile profile) {
+  if (profile.dashboardLayout != null && profile.dashboardLayout!.isNotEmpty) {
+    final newLayout = DashboardWidgetParser.parseLayout(profile.dashboardLayout);
+    if (newLayout.isNotEmpty) {
+      _ref.read(appSettingProvider.notifier).updateState(
+            (state) => state.copyWith(dashboardWidgets: newLayout),
+          );
+    }
+  }
+
+  if (profile.proxiesView != null && profile.proxiesView!.isNotEmpty) {
+    final proxiesStyleNotifier = _ref.read(proxiesStyleSettingProvider.notifier);
+    proxiesStyleNotifier.updateState((currentState) {
+      var newState = currentState;
+      final settings = profile.proxiesView!.split(';');
+      for (final setting in settings) {
+        final parts = setting.split(':');
+        if (parts.length == 2) {
+          final key = parts[0].trim().toLowerCase();
+          final value = parts[1].trim().toLowerCase();
+          switch (key) {
+            case 'type':
+              if (value == 'list') newState = newState.copyWith(type: ProxiesType.list);
+              if (value == 'tab') newState = newState.copyWith(type: ProxiesType.tab);
+              break;
+            case 'sort':
+              if (value == 'none') newState = newState.copyWith(sortType: ProxiesSortType.none);
+              if (value == 'delay') newState = newState.copyWith(sortType: ProxiesSortType.delay);
+              if (value == 'name') newState = newState.copyWith(sortType: ProxiesSortType.name);
+              break;
+            case 'layout':
+              if (value == 'loose') newState = newState.copyWith(layout: ProxiesLayout.loose);
+              if (value == 'standard') newState = newState.copyWith(layout: ProxiesLayout.standard);
+              if (value == 'tight') newState = newState.copyWith(layout: ProxiesLayout.tight);
+              break;
+            case 'icon':
+              if (value == 'standard') newState = newState.copyWith(iconStyle: ProxiesIconStyle.standard);
+              if (value == 'none') newState = newState.copyWith(iconStyle: ProxiesIconStyle.none);
+              if (value == 'icon') newState = newState.copyWith(iconStyle: ProxiesIconStyle.icon);
+              break;
+            case 'card':
+              if (value == 'expand') newState = newState.copyWith(cardType: ProxyCardType.expand);
+              if (value == 'shrink') newState = newState.copyWith(cardType: ProxyCardType.shrink);
+              if (value == 'min') newState = newState.copyWith(cardType: ProxyCardType.min);
+              break;
+          }
+        }
+      }
+      return newState;
+    });
+  }
+}
+
 
   Future<List<Package>> getPackages() async {
     if (_ref.read(isMobileViewProvider)) {

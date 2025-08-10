@@ -54,6 +54,8 @@ class Profile with _$Profile {
     String? announceText,
     String? supportUrl,
     String? dashboardLayout,
+    String? proxiesView,
+    String? customBehavior,
     @Default("") String url,
     DateTime? lastUpdateDate,
     required Duration autoUpdateDuration,
@@ -65,6 +67,7 @@ class Profile with _$Profile {
     @JsonKey(includeToJson: false, includeFromJson: false)
     @Default(false)
     bool isUpdating,
+    bool? denyWidgetEditing,
 
   }) = _Profile;
 
@@ -196,15 +199,26 @@ extension ProfileExtension on Profile {
     final updateIntervalHeader = response.headers.value('profile-update-interval');
     final supportUrl = response.headers.value('support-url');
     final dashboardHeader = response.headers.value('flclashx-widgets');
-    Duration? durationFromHeader;
+    final serviceName = response.headers.value('flclashx-servicename');
+    final customBehavior = response.headers.value('flclashx-custom');
 
-    if (updateIntervalHeader != null) {
-      final hours = int.tryParse(updateIntervalHeader);
-      if (hours != null && hours > 0) {
-        durationFromHeader = Duration(hours: hours);
+    final denyWidgetHeader = response.headers.value('flclashx-denywidgets');
+      bool? denyWidgetValue;
+      if (denyWidgetHeader == 'true') {
+        denyWidgetValue = true;
+      } else if (denyWidgetHeader == 'false') {
+        denyWidgetValue = false;
       }
-    }
+    
+      Duration? durationFromHeader;
+      if (updateIntervalHeader != null) {
+        final hours = int.tryParse(updateIntervalHeader);
+        if (hours != null && hours > 0) {
+          durationFromHeader = Duration(hours: hours);
+        }
+      }
 
+    final proxiesViewHeader = response.headers.value('flclashx-view');
     final responseData = response.data;
     if (responseData == null) {
       throw Exception("Failed to get profile data from response.");
@@ -217,6 +231,9 @@ extension ProfileExtension on Profile {
       supportUrl: supportUrl,
       dashboardLayout: dashboardHeader,
       autoUpdateDuration: durationFromHeader ?? autoUpdateDuration,
+      denyWidgetEditing: denyWidgetValue,
+      proxiesView: proxiesViewHeader,
+      customBehavior: customBehavior,
     ).saveFile(responseData);
   }
 

@@ -107,6 +107,12 @@ class AppLocalizations {
   String get profiles {
     return Intl.message('Profiles', name: 'profiles', desc: '', args: []);
   }
+  String get remaining {
+  return Intl.message('Remaining', name: 'remaining');
+  }
+  String get daysUntilExpirationShort {
+    return Intl.message('Days until expiration', name: 'daysUntilExpirationShort');
+  }
 
   /// `Tools`
   String get tools {
@@ -372,7 +378,20 @@ class AppLocalizations {
       args: [],
     );
   }
-
+  /// `Add Profile`
+  String get addProfile {
+    return Intl.message(
+      'Add Profile',
+      name: 'addProfile',
+    );
+  }
+  /// `QR code not found in the image`
+  String get qrNotFound {
+    return Intl.message(
+      'QR code not found in the image',
+      name: 'qrNotFound',
+    );
+  }
   /// `SilentLaunch`
   String get silentLaunch {
     return Intl.message(

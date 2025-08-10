@@ -162,6 +162,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "daysUntilExpiration": (days) => "Days until expiration: ${days}",
     "subscriptionExpiresSoon": MessageLookupByLibrary.simpleMessage("Subscription Expires Soon"),
     "subscriptionExpiresInDays": (days) => "Your subscription will expire in ${days} days.",
+    "remaining": MessageLookupByLibrary.simpleMessage("Remaining"),
     "renew": MessageLookupByLibrary.simpleMessage("Renew"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "cancelFilterSystemApp": MessageLookupByLibrary.simpleMessage(
@@ -250,6 +251,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileAddedSuccess": MessageLookupByLibrary.simpleMessage(
       "Sucess add profile",
     ),
+    "daysUntilExpirationShort": MessageLookupByLibrary.simpleMessage("Expire of"),
     "dnsMode": MessageLookupByLibrary.simpleMessage("DNS mode"),
     "doYouWantToPass": MessageLookupByLibrary.simpleMessage(
       "Do you want to pass",
@@ -496,6 +498,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pleaseInputAdminPassword": MessageLookupByLibrary.simpleMessage(
       "Please enter the admin password",
     ),
+    "addProfile": MessageLookupByLibrary.simpleMessage("Add Profile"),
     "pleaseUploadFile": MessageLookupByLibrary.simpleMessage(
       "Please upload file",
     ),
@@ -513,6 +516,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "pressKeyboard": MessageLookupByLibrary.simpleMessage(
       "Please press the keyboard.",
     ),
+    "qrNotFound": MessageLookupByLibrary.simpleMessage("QR code not found in the image"),
     "preview": MessageLookupByLibrary.simpleMessage("Preview"),
     "profile": MessageLookupByLibrary.simpleMessage("Profile"),
     "profileAutoUpdateIntervalInvalidValidationDesc":
