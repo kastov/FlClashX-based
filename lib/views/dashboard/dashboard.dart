@@ -56,40 +56,52 @@ class _DashboardViewState extends ConsumerState<DashboardView> with PageMixin {
     );
   }
 
-  @override
+ @override
   List<Widget> get actions => [
-        _buildIsEdit((isEdit) {
-          return isEdit
-              ? ValueListenableBuilder(
-                  valueListenable: _addedWidgetsNotifier,
-                  builder: (_, addedChildren, child) {
-                    if (addedChildren.isEmpty) {
-                      return Container();
-                    }
-                    return child!;
+      _buildIsEdit((isEdit) {
+        return isEdit
+            ? ValueListenableBuilder(
+                valueListenable: _addedWidgetsNotifier,
+                builder: (_, addedChildren, child) {
+                  if (addedChildren.isEmpty) {
+                    return Container();
+                  }
+                  return child!;
+                },
+                child: IconButton(
+                  onPressed: () {
+                    _showAddWidgetsModal();
                   },
-                  child: IconButton(
-                    onPressed: () {
-                      _showAddWidgetsModal();
-                    },
-                    icon: Icon(
-                      Icons.add_circle,
-                    ),
+                  icon: const Icon(
+                    Icons.add_circle,
                   ),
-                )
-              : SizedBox();
-        }),
-        IconButton(
-          icon: _buildIsEdit((isEdit) {
-            return isEdit
-                ? Icon(Icons.save)
-                : Icon(
-                    Icons.edit,
-                  );
-          }),
-          onPressed: _handleUpdateIsEdit,
-        ),
-      ];
+                ),
+              )
+            : const SizedBox();
+      }),
+      Consumer(
+        builder: (context, ref, child) {
+          final denyEditing = ref.watch(
+            currentProfileProvider.select((profile) => profile?.denyWidgetEditing)
+          );
+
+          if (denyEditing == true) {
+            return const SizedBox.shrink();
+          }
+
+          return IconButton(
+            icon: _buildIsEdit((isEdit) {
+              return isEdit
+                  ? const Icon(Icons.save)
+                  : const Icon(
+                      Icons.edit,
+                    );
+            }),
+            onPressed: _handleUpdateIsEdit,
+          );
+        },
+      ),
+    ];
 
   _showAddWidgetsModal() {
     showSheet(

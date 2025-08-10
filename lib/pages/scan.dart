@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'dart:math';
-import 'package:flclashx/common/color.dart';
-import 'package:flclashx/state.dart';
-import 'package:flclashx/widgets/activate_box.dart';
+import 'package:flclashx/common/common.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
+import 'package:file_picker/file_picker.dart';
 
 class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
@@ -13,154 +13,129 @@ class ScanPage extends StatefulWidget {
   State<ScanPage> createState() => _ScanPageState();
 }
 
-class _ScanPageState extends State<ScanPage> with WidgetsBindingObserver {
-  MobileScannerController controller = MobileScannerController(
-    detectionSpeed: DetectionSpeed.noDuplicates,
-    formats: const [BarcodeFormat.qrCode],
-  );
+class _ScanPageState extends State<ScanPage> {
+  final MobileScannerController _scannerController = MobileScannerController();
+  bool _isScanComplete = false;
 
-  StreamSubscription<Object?>? _subscription;
+  void _handleBarcode(BarcodeCapture capture) {
+    if (_isScanComplete) return;
 
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addObserver(this);
-    _subscription = controller.barcodes.listen(_handleBarcode);
-    unawaited(controller.start());
+    final rawValue = capture.barcodes.first.rawValue;
+
+    if (rawValue != null && rawValue.isNotEmpty) {
+      setState(() {
+        _isScanComplete = true;
+      });
+      Navigator.pop<String>(context, rawValue);
+    }
   }
 
-  _handleBarcode(BarcodeCapture barcodeCapture) {
-    final barcode = barcodeCapture.barcodes.first;
-    if (barcode.type == BarcodeType.url) {
-      Navigator.pop<String>(
-        context,
-        barcode.rawValue,
+  Future<void> _scanFromImage() async {
+    String? imagePath;
+
+    if (system.isDesktop) {
+      final result = await FilePicker.platform.pickFiles(
+        type: FileType.image,
       );
-    } else {
-      Navigator.pop(context);
+      if (result != null && result.files.single.path != null) {
+        imagePath = result.files.single.path;
+      }
+    } 
+
+    else {
+      final ImagePicker picker = ImagePicker();
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
+      if (image != null) {
+        imagePath = image.path;
+      }
+    }
+
+    if (imagePath != null) {
+      final BarcodeCapture? result = await _scannerController.analyzeImage(imagePath);
+      if (result != null && result.barcodes.isNotEmpty) {
+        _handleBarcode(result);
+      } else {
+        if (mounted) {
+          context.showNotifier(appLocalizations.qrNotFound);
+        }
+      }
     }
   }
 
   @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    super.didChangeAppLifecycleState(state);
-    switch (state) {
-      case AppLifecycleState.detached:
-      case AppLifecycleState.hidden:
-      case AppLifecycleState.paused:
-        return;
-      case AppLifecycleState.resumed:
-        _subscription = controller.barcodes.listen(_handleBarcode);
-
-        unawaited(controller.start());
-      case AppLifecycleState.inactive:
-        unawaited(_subscription?.cancel());
-        _subscription = null;
-        unawaited(controller.stop());
-    }
+  void dispose() {
+    _scannerController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     double sideLength = min(400, MediaQuery.of(context).size.width * 0.67);
+    
+    final screenSize = MediaQuery.of(context).size;
     final scanWindow = Rect.fromCenter(
-      center: MediaQuery.sizeOf(context).center(Offset.zero),
+      center: Offset(screenSize.width / 2, screenSize.height / 2),
       width: sideLength,
       height: sideLength,
     );
+
     return Scaffold(
       body: Stack(
         children: [
-          Center(
-            child: MobileScanner(
-              controller: controller,
-              scanWindow: scanWindow,
-            ),
+          MobileScanner(
+            controller: _scannerController,
+            scanWindow: scanWindow,
+            onDetect: _handleBarcode,
           ),
           CustomPaint(
             painter: ScannerOverlay(scanWindow: scanWindow),
           ),
           AppBar(
             backgroundColor: Colors.transparent,
-            automaticallyImplyLeading: false,
             leading: IconButton(
-              style: const ButtonStyle(
-                iconSize: WidgetStatePropertyAll(32),
-                foregroundColor: WidgetStatePropertyAll(Colors.white),
-              ),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: const Icon(Icons.close),
+              icon: const Icon(Icons.close, color: Colors.white),
+              onPressed: () => Navigator.of(context).pop(),
             ),
             actions: [
-              ValueListenableBuilder<MobileScannerState>(
-                valueListenable: controller,
-                builder: (context, state, _) {
-                  var icon = const Icon(Icons.flash_off);
-                  var backgroundColor = Colors.black12;
-                  switch (state.torchState) {
-                    case TorchState.off:
-                      icon = const Icon(Icons.flash_off);
-                      backgroundColor = Colors.black12;
-                    case TorchState.on:
-                      icon = const Icon(Icons.flash_on);
-                      backgroundColor = Colors.orange;
-                    case TorchState.unavailable:
-                      icon = const Icon(Icons.flash_off);
-                      backgroundColor = Colors.transparent;
-                    case TorchState.auto:
-                      icon = const Icon(Icons.flash_auto);
-                      backgroundColor = Colors.orange;
-                  }
-                  return Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 8),
-                    child: ActivateBox(
-                      active: state.torchState != TorchState.unavailable,
-                      child: IconButton(
-                        color: Colors.white,
-                        icon: icon,
-                        style: ButtonStyle(
-                          foregroundColor:
-                              const WidgetStatePropertyAll(Colors.white),
-                          backgroundColor:
-                              WidgetStatePropertyAll(backgroundColor),
-                        ),
-                        onPressed: () => controller.toggleTorch(),
-                      ),
-                    ),
-                  );
-                },
-              )
+              IconButton(
+                color: Colors.white,
+                icon: ValueListenableBuilder<MobileScannerState>(
+                  valueListenable: _scannerController,
+                  builder: (context, state, child) {
+                    switch (state.torchState) {
+                      case TorchState.off:
+                        return const Icon(Icons.flash_off, color: Colors.grey);
+                      case TorchState.on:
+                        return const Icon(Icons.flash_on, color: Colors.yellow);
+                      case TorchState.unavailable:
+                      default:
+                        return const Icon(Icons.no_flash, color: Colors.grey);
+                    }
+                  },
+                ),
+                onPressed: () => _scannerController.toggleTorch(),
+              ),
             ],
           ),
-          Container(
-            margin: const EdgeInsets.only(bottom: 32),
+          Align(
             alignment: Alignment.bottomCenter,
-            child: IconButton(
-              color: Colors.white,
-              style: const ButtonStyle(
-                foregroundColor: WidgetStatePropertyAll(Colors.white),
-                backgroundColor: WidgetStatePropertyAll(Colors.grey),
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 32.0),
+              child: IconButton(
+                color: Colors.white,
+                style: ButtonStyle(
+                  backgroundColor: WidgetStateProperty.all(Colors.black.withOpacity(0.5)),
+                ),
+                padding: const EdgeInsets.all(16),
+                iconSize: 32.0,
+                onPressed: _scanFromImage,
+                icon: const Icon(Icons.photo_library_outlined),
               ),
-              padding: const EdgeInsets.all(16),
-              iconSize: 32.0,
-              onPressed: globalState.appController.addProfileFormQrCode,
-              icon: const Icon(Icons.photo_camera_back),
             ),
           ),
         ],
       ),
     );
-  }
-
-  @override
-  Future<void> dispose() async {
-    WidgetsBinding.instance.removeObserver(this);
-    unawaited(_subscription?.cancel());
-    _subscription = null;
-    await controller.dispose();
-    super.dispose();
   }
 }
 
@@ -189,7 +164,7 @@ class ScannerOverlay extends CustomPainter {
       );
 
     final backgroundPaint = Paint()
-      ..color = Colors.black.opacity50
+      ..color = Colors.black.withOpacity(0.5)
       ..style = PaintingStyle.fill
       ..blendMode = BlendMode.dstOut;
 

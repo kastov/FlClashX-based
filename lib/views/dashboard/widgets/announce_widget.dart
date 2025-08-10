@@ -40,9 +40,12 @@ class AnnounceWidget extends ConsumerWidget {
         onPressed: null,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
-          child: SelectableText(
-            announceText,
-            style: Theme.of(context).textTheme.bodyLarge,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: SelectableText(
+              announceText,
+              style: Theme.of(context).textTheme.bodyLarge,
+            ),
           ),
         ),
       ),

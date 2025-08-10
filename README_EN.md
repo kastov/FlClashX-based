@@ -26,7 +26,7 @@ on Mobile:
 
 ## Added Functionality:
 
-🛠️ Fixed default settings: process search mode on, TUN mode on, system proxy mode off, proxy list display mode set to 'list'.
+🛠️ Fixed default settings: process search mode on, TUN mode on, system proxy mode off, proxy list display mode set to 'list', changed camera behavior when adding a subscription via QR.
 
 🇷🇺 Added Russian language to the installer and redesigned the localization in the application.
 
@@ -72,6 +72,39 @@ on Mobile:
 Usage:
 ```bash
     flclashx-widgets: announce,networkSpeed,outboundModeV2,outboundMode,trafficUsage,networkDetection,tunButton,vpnButton,systemProxyButton,intranetIp,memoryInfo
+```
+   + flclashx-view: Configures the appearance of the proxy page obtained from the subscription.
+
+| Value  | Description | Possible values |
+| :---: | ------------- | ------------- |
+| `type`  | Display mode  | `list`,`tab` |
+| `sort`  | Sorting type	  | `none`,`delay`,`name`|
+| `layout`  | Layout  | `loose`,`standard`,`tight` |
+| `icon`  | Icon style (for list display)  | `none`,`standard`,`icon` |
+| `card`  | Card size   | `expand`,`shrink`,`min` |
+
+
+Usage:
+```bash
+    flclashx-view: type:list; sort:delay; layout:tight; icon:standard; card:shrink
+```
+
+   + flclashx-custom: Controls the application of styles for Dashboard and ProxyView.
+
+| Value  | Description |
+| :---: | ------------- |
+| `add`  | Styles are applied only when the subscription is first added  |
+| `update`  | 	Styles are applied every time the subscription is updated |
+
+Usage:
+```bash
+    flclashx-custom: update
+```
+   + flclashx-denywidgets: When set to true, editing the Dashboard page is disabled. Accepts true/false.
+
+Usage:
+```bash
+    flclashx-denywidgets: true
 ```
 
 ## Application Usage

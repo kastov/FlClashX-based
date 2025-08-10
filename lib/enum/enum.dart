@@ -8,6 +8,8 @@ import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:flclashx/views/dashboard/widgets/announce_widget.dart';
+import 'package:flclashx/views/dashboard/widgets/metainfo_widget.dart';
+
 
 
 enum SupportPlatform {
@@ -353,6 +355,12 @@ enum DashboardWidget {
     GridItem(
       crossAxisCellCount: 8,
       child: AnnounceWidget(),
+    ),
+  ),
+  metainfo(
+    GridItem(
+      crossAxisCellCount: 8,
+      child: MetainfoWidget(),
     ),
   ),
   networkDetection(

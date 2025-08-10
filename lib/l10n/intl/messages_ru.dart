@@ -490,13 +490,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "profileAddedSuccess": MessageLookupByLibrary.simpleMessage(
       "Профиль добавлен успешно",
     ),
+    "addProfile": MessageLookupByLibrary.simpleMessage("Добавить профиль"),
     "nullTip": m4,
     "numberTip": m5,
+    "daysUntilExpirationShort": MessageLookupByLibrary.simpleMessage("Дней до окончания"),
+    "remaining": MessageLookupByLibrary.simpleMessage("Осталось"),
     "oneColumn": MessageLookupByLibrary.simpleMessage("Один столбец"),
     "onlyIcon": MessageLookupByLibrary.simpleMessage("Только иконка"),
     "onlyOtherApps": MessageLookupByLibrary.simpleMessage(
       "Только сторонние приложения",
     ),
+    "qrNotFound": MessageLookupByLibrary.simpleMessage("QR-код не найден на изображении"),
     "onlyStatisticsProxy": MessageLookupByLibrary.simpleMessage(
       "Только статистика прокси",
     ),
