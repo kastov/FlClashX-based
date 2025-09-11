@@ -35,7 +35,7 @@ migrate_working_dir/
 /build/
 /dist/
 /android/core/.cxx/
-/service/helper/target/release/
+/service/
 # Symbolication related
 app.*.symbols
 

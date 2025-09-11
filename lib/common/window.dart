@@ -15,8 +15,8 @@ class Window {
     }
     if (Platform.isWindows) {
       protocol.register("clashx");
-      protocol.register("clashmeta");
       protocol.register("flclash");
+      protocol.register("flclashx");
     }
     await windowManager.ensureInitialized();
     WindowOptions windowOptions = WindowOptions(
