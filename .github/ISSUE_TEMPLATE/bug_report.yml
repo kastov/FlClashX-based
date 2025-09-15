@@ -46,6 +46,6 @@ body:
   - type: textarea
     attributes:
       label: Логи (не прикрепляйте файл, вставьте содержимое логов напрямую) / Log (Do not upload the log file, paste the log content directly)
-      description: Пожалуйста, предоставьте полный или соответствующий отладочный лог (для этого установите уровень логирования в меню слева: ПО -> Настройки -> Уровень логирования -> Debug) / Please provide a complete or relevant Debug log (please adjust it to debug in the left menu of software-> Settings-> Log Level)
+      description: Пожалуйста, предоставьте полный или соответствующий отладочный лог (для этого установите уровень логирования в меню слева: ПО-> Настройки-> Уровень логирования-> Debug) / Please provide a complete or relevant Debug log (please adjust it to debug in the left menu of software-> Settings-> Log Level)
     validations:
       required: true
