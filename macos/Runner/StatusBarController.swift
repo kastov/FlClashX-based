@@ -15,7 +15,7 @@ class PopoverContainerViewController: NSViewController {
     }
     
     override func loadView() {
-        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 500, height: 800))
+        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 375, height: 600))
                 
         addChild(flutterViewController)
         flutterViewController.view.frame = self.view.bounds
