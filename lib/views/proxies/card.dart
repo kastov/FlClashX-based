@@ -173,7 +173,7 @@ class ProxyCard extends StatelessWidget {
                           flex: 1,
                           child: TooltipText(
                             text: Text(
-                              proxy.type,
+                              proxy.serverDescription ?? proxy.type,
                               style: context.textTheme.bodySmall?.copyWith(
                                 overflow: TextOverflow.ellipsis,
                                 color: context
@@ -241,7 +241,7 @@ class _ProxyComputedMark extends ConsumerWidget {
       getProxyNameProvider(groupName),
     );
     if (proxyName != proxy.name) {
-      return SizedBox();
+      return const SizedBox();
     }
     return Container(
       alignment: Alignment.topRight,
