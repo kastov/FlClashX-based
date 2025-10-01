@@ -59,10 +59,16 @@ class Window {
     }
     await windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.setPreventClose(true);
+      // On macOS, immediately hide the window as the app runs in status bar
+      if (Platform.isMacOS) {
+        await windowManager.hide();
+      }
     });
   }
 
   show() async {
+    if (Platform.isMacOS) return;
+
     render?.resume();
     await windowManager.show();
     await windowManager.focus();
@@ -70,6 +76,8 @@ class Window {
   }
 
   Future<bool> get isVisible async {
+    if (Platform.isMacOS) return false;
+
     final value = await windowManager.isVisible();
     commonPrint.log("window visible check: $value");
     return value;
@@ -80,6 +88,8 @@ class Window {
   }
 
   hide() async {
+    if (Platform.isMacOS) return;
+
     render?.pause();
     await windowManager.hide();
     await windowManager.setSkipTaskbar(true);

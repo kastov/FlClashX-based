@@ -10,8 +10,6 @@ import 'package:hotkey_manager/hotkey_manager.dart';
 import 'package:flclashx/views/dashboard/widgets/announce_widget.dart';
 import 'package:flclashx/views/dashboard/widgets/metainfo_widget.dart';
 
-
-
 enum SupportPlatform {
   Windows,
   MacOS,
@@ -428,7 +426,8 @@ extension DashboardWidgetParser on DashboardWidget {
       return [];
     }
 
-    final widgetNames = layoutString.split(',').map((e) => e.trim().toLowerCase()).toList();
+    final widgetNames =
+        layoutString.split(',').map((e) => e.trim().toLowerCase()).toList();
     final List<DashboardWidget> result = [];
 
     for (final name in widgetNames) {

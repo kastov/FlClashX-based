@@ -77,73 +77,55 @@ class _StartButtonState extends ConsumerState<StartButton>
     if (!state.isInit || !state.hasProfile) {
       return Container();
     }
-    return Transform.scale(
-      scale: 1.1,
-      child: Theme(
-        data: Theme.of(context).copyWith(
-          floatingActionButtonTheme: const FloatingActionButtonThemeData(
-            sizeConstraints: BoxConstraints(
-              minWidth: 56,
-              maxWidth: 200,
-            ),
-          ),
-        ),
-        child: AnimatedBuilder(
-          animation: _controller.view,
-          builder: (_, child) {
-            final textWidth = globalState.measure
-                    .computeTextSize(
-                      Text(
-                        utils.getTimeDifference(
-                          DateTime.now(),
-                        ),
-                        style: context.textTheme.titleMedium?.toSoftBold,
-                      ),
-                    )
-                    .width +
-                16;
-            return FloatingActionButton(
-              clipBehavior: Clip.antiAlias,
-              materialTapTargetSize: MaterialTapTargetSize.padded,
-              heroTag: null,
+
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: AnimatedBuilder(
+        animation: _controller.view,
+        builder: (_, child) {
+          return SizedBox(
+            width: double.infinity,
+            height: 56,
+            child: FilledButton.tonal(
               onPressed: () {
                 handleSwitchStart();
               },
+              style: FilledButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
               child: Row(
-                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    height: 56,
-                    width: 56,
-                    alignment: Alignment.center,
-                    child: AnimatedIcon(
-                      icon: AnimatedIcons.play_pause,
-                      progress: _animation,
-                    ),
+                  AnimatedIcon(
+                    icon: AnimatedIcons.play_pause,
+                    progress: _animation,
+                    size: 28,
                   ),
-                  SizedBox(
-                    width: textWidth * _animation.value,
-                    child: child!,
-                  )
+                  const SizedBox(width: 12),
+                  child!,
                 ],
               ),
-            );
-          },
-          child: Consumer(
-            builder: (_, ref, __) {
-              final runTime = ref.watch(runTimeProvider);
+            ),
+          );
+        },
+        child: Consumer(
+          builder: (_, ref, __) {
+            final runTime = ref.watch(runTimeProvider);
+            if (runTime != null) {
               final text = utils.getTimeText(runTime);
               return Text(
                 text,
-                maxLines: 1,
-                overflow: TextOverflow.visible,
-                style:
-                    Theme.of(context).textTheme.titleMedium?.toSoftBold.copyWith(
-                          color: context.colorScheme.onPrimaryContainer,
-                        ),
+                style: context.textTheme.titleMedium?.toSoftBold,
               );
-            },
-          ),
+            } else {
+              return Text(
+                appLocalizations.start,
+                style: context.textTheme.titleMedium?.toSoftBold,
+              );
+            }
+          },
         ),
       ),
     );

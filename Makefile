@@ -1,7 +1,7 @@
 android_arm64:
 	dart ./setup.dart android --arch arm64
 macos_arm64:
-	dart ./setup.dart macos --arch arm64
+	dart ./setup.dart macos --arch arm64 --env stable
 android_app:
 	dart ./setup.dart android
 android_arm64_core:

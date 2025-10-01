@@ -25,12 +25,8 @@ mixin _$SubscriptionInfo {
   int get total => throw _privateConstructorUsedError;
   int get expire => throw _privateConstructorUsedError;
 
-  /// Serializes this SubscriptionInfo to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of SubscriptionInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $SubscriptionInfoCopyWith<SubscriptionInfo> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -54,8 +50,6 @@ class _$SubscriptionInfoCopyWithImpl<$Res, $Val extends SubscriptionInfo>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of SubscriptionInfo
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -104,8 +98,6 @@ class __$$SubscriptionInfoImplCopyWithImpl<$Res>
       $Res Function(_$SubscriptionInfoImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of SubscriptionInfo
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -174,13 +166,11 @@ class _$SubscriptionInfoImpl implements _SubscriptionInfo {
             (identical(other.expire, expire) || other.expire == expire));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, upload, download, total, expire);
 
-  /// Create a copy of SubscriptionInfo
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$SubscriptionInfoImplCopyWith<_$SubscriptionInfoImpl> get copyWith =>
@@ -213,11 +203,8 @@ abstract class _SubscriptionInfo implements SubscriptionInfo {
   int get total;
   @override
   int get expire;
-
-  /// Create a copy of SubscriptionInfo
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$SubscriptionInfoImplCopyWith<_$SubscriptionInfoImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -248,12 +235,8 @@ mixin _$Profile {
   bool get isUpdating => throw _privateConstructorUsedError;
   bool? get denyWidgetEditing => throw _privateConstructorUsedError;
 
-  /// Serializes this Profile to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of Profile
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $ProfileCopyWith<Profile> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -296,8 +279,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of Profile
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -396,8 +377,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     ) as $Val);
   }
 
-  /// Create a copy of Profile
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SubscriptionInfoCopyWith<$Res>? get subscriptionInfo {
@@ -410,8 +389,6 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     });
   }
 
-  /// Create a copy of Profile
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OverrideDataCopyWith<$Res> get overrideData {
@@ -462,8 +439,6 @@ class __$$ProfileImplCopyWithImpl<$Res>
       _$ProfileImpl _value, $Res Function(_$ProfileImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of Profile
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -692,7 +667,7 @@ class _$ProfileImpl implements _Profile {
                 other.denyWidgetEditing == denyWidgetEditing));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -715,9 +690,7 @@ class _$ProfileImpl implements _Profile {
       isUpdating,
       denyWidgetEditing);
 
-  /// Create a copy of Profile
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
@@ -792,11 +765,8 @@ abstract class _Profile implements Profile {
   bool get isUpdating;
   @override
   bool? get denyWidgetEditing;
-
-  /// Create a copy of Profile
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$ProfileImplCopyWith<_$ProfileImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -810,12 +780,8 @@ mixin _$OverrideData {
   bool get enable => throw _privateConstructorUsedError;
   OverrideRule get rule => throw _privateConstructorUsedError;
 
-  /// Serializes this OverrideData to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of OverrideData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OverrideDataCopyWith<OverrideData> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -841,8 +807,6 @@ class _$OverrideDataCopyWithImpl<$Res, $Val extends OverrideData>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OverrideData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -861,8 +825,6 @@ class _$OverrideDataCopyWithImpl<$Res, $Val extends OverrideData>
     ) as $Val);
   }
 
-  /// Create a copy of OverrideData
-  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $OverrideRuleCopyWith<$Res> get rule {
@@ -894,8 +856,6 @@ class __$$OverrideDataImplCopyWithImpl<$Res>
       _$OverrideDataImpl _value, $Res Function(_$OverrideDataImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OverrideData
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -945,13 +905,11 @@ class _$OverrideDataImpl implements _OverrideData {
             (identical(other.rule, rule) || other.rule == rule));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, enable, rule);
 
-  /// Create a copy of OverrideData
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OverrideDataImplCopyWith<_$OverrideDataImpl> get copyWith =>
@@ -976,11 +934,8 @@ abstract class _OverrideData implements OverrideData {
   bool get enable;
   @override
   OverrideRule get rule;
-
-  /// Create a copy of OverrideData
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OverrideDataImplCopyWith<_$OverrideDataImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -995,12 +950,8 @@ mixin _$OverrideRule {
   List<Rule> get overrideRules => throw _privateConstructorUsedError;
   List<Rule> get addedRules => throw _privateConstructorUsedError;
 
-  /// Serializes this OverrideRule to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
-  /// Create a copy of OverrideRule
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   $OverrideRuleCopyWith<OverrideRule> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1025,8 +976,6 @@ class _$OverrideRuleCopyWithImpl<$Res, $Val extends OverrideRule>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
-  /// Create a copy of OverrideRule
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1071,8 +1020,6 @@ class __$$OverrideRuleImplCopyWithImpl<$Res>
       _$OverrideRuleImpl _value, $Res Function(_$OverrideRuleImpl) _then)
       : super(_value, _then);
 
-  /// Create a copy of OverrideRule
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1148,7 +1095,7 @@ class _$OverrideRuleImpl implements _OverrideRule {
                 .equals(other._addedRules, _addedRules));
   }
 
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1156,9 +1103,7 @@ class _$OverrideRuleImpl implements _OverrideRule {
       const DeepCollectionEquality().hash(_overrideRules),
       const DeepCollectionEquality().hash(_addedRules));
 
-  /// Create a copy of OverrideRule
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
   _$$OverrideRuleImplCopyWith<_$OverrideRuleImpl> get copyWith =>
@@ -1187,11 +1132,8 @@ abstract class _OverrideRule implements OverrideRule {
   List<Rule> get overrideRules;
   @override
   List<Rule> get addedRules;
-
-  /// Create a copy of OverrideRule
-  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @JsonKey(ignore: true)
   _$$OverrideRuleImplCopyWith<_$OverrideRuleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
