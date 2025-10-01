@@ -401,6 +401,12 @@ enum DashboardWidget {
       crossAxisCellCount: 4,
       child: MemoryInfo(),
     ),
+  ),
+  changeServerButton(
+    GridItem(
+      crossAxisCellCount: 8,
+      child: ChangeServerButton(),
+    ),
   );
 
   final GridItem widget;
@@ -412,7 +418,7 @@ enum DashboardWidget {
   });
 
   static DashboardWidget getDashboardWidget(GridItem gridItem) {
-    final dashboardWidgets = DashboardWidget.values;
+    const dashboardWidgets = DashboardWidget.values;
     final index = dashboardWidgets.indexWhere(
       (item) => item.widget == gridItem,
     );

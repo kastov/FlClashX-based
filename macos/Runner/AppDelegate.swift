@@ -28,7 +28,7 @@ class AppDelegate: FlutterAppDelegate {
         
         let popoverContainer = PopoverContainerViewController(flutterViewController: mainController)
         
-        flutterUIPopover.contentSize = NSSize(width: 400, height: 800)
+        flutterUIPopover.contentSize = NSSize(width: 500, height: 800)
         
         flutterUIPopover.contentViewController = popoverContainer
         

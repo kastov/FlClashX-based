@@ -18,14 +18,18 @@ class Window {
       protocol.register("flclash");
       protocol.register("flclashx");
     }
+
+    // On macOS, the app runs in status bar with popover - no window manager needed
+    if (Platform.isMacOS) {
+      return;
+    }
+
     await windowManager.ensureInitialized();
     WindowOptions windowOptions = WindowOptions(
       size: Size(props.width, props.height),
       minimumSize: const Size(380, 400),
     );
-    if (!Platform.isMacOS || version > 10) {
-      await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
-    }
+    await windowManager.setTitleBarStyle(TitleBarStyle.hidden);
     if (!Platform.isMacOS) {
       final left = props.left ?? 0;
       final top = props.top ?? 0;
@@ -59,10 +63,6 @@ class Window {
     }
     await windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.setPreventClose(true);
-      // On macOS, immediately hide the window as the app runs in status bar
-      if (Platform.isMacOS) {
-        await windowManager.hide();
-      }
     });
   }
 

@@ -46,8 +46,11 @@ class _WindowContainerState extends ConsumerState<WindowManager>
         }
       },
     );
+    // On macOS, we still need windowExtManager for quit handling, but not windowManager
     windowExtManager.addListener(this);
-    windowManager.addListener(this);
+    if (!Platform.isMacOS) {
+      windowManager.addListener(this);
+    }
   }
 
   @override
@@ -110,8 +113,10 @@ class _WindowContainerState extends ConsumerState<WindowManager>
 
   @override
   Future<void> dispose() async {
-    windowManager.removeListener(this);
     windowExtManager.removeListener(this);
+    if (!Platform.isMacOS) {
+      windowManager.removeListener(this);
+    }
     super.dispose();
   }
 }
@@ -168,7 +173,9 @@ class _WindowHeaderState extends State<WindowHeader> {
   @override
   void initState() {
     super.initState();
-    _initNotifier();
+    if (!Platform.isMacOS) {
+      _initNotifier();
+    }
   }
 
   _initNotifier() async {

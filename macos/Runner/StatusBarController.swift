@@ -15,7 +15,15 @@ class PopoverContainerViewController: NSViewController {
     }
     
     override func loadView() {
-        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 400, height: 800))
+        self.view = NSView(frame: NSRect(x: 0, y: 0, width: 500, height: 800))
+        
+        // Modern macOS style with rounded corners
+        self.view.wantsLayer = true
+        if let layer = self.view.layer {
+            layer.cornerRadius = 12
+            layer.masksToBounds = true
+        }
+        
         addChild(flutterViewController)
         flutterViewController.view.frame = self.view.bounds
         flutterViewController.view.autoresizingMask = [.width, .height]
