@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:flclashx/common/common.dart';
 import 'package:flclashx/enum/enum.dart';
-import 'package:flclashx/providers/app.dart';
 import 'package:flclashx/providers/config.dart';
 import 'package:flclashx/state.dart';
 import 'package:flutter/material.dart';
@@ -131,12 +130,12 @@ class WindowHeaderContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (Platform.isMacOS) {
+      return child;
+    }
+
     return Consumer(
       builder: (_, ref, child) {
-        final version = ref.watch(versionProvider);
-        if (version <= 10 && Platform.isMacOS) {
-          return child!;
-        }
         return Stack(
           children: [
             Column(
