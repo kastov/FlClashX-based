@@ -58,21 +58,22 @@ on Mobile:
 
 - flclashx-widgets: arranges widgets in the order received from the subscription.
 
-  |        Value         | Name widget                        |
-  | :------------------: | ---------------------------------- |
-  |      `announce`      | Announce Badge                     |
-  |    `networkSpeed`    | Network speed                      |
-  |   `outboundModeV2`   | Proxy mode (new type)              |
-  |    `outboundMode`    | Proxy mode (old type)              |
-  |    `trafficUsage`    | Traffic usage                      |
-  |  `networkDetection`  | Determining location and IP        |
-  |     `tunButton`      | TUN button (Desktop only)          |
-  |     `vpnButton`      | VPN button (Android only)          |
-  | `systemProxyButton`  | System Proxy Button (Desktop only) |
-  |     `intranetIp`     | Local IP-Address                   |
-  |     `memoryInfo`     | Memory usage                       |
-  |      `metainfo`      | Profile information                |
-  | `changeServerButton` | Change server button               |
+  |        Value         | Name widget                                                 |
+  | :------------------: | ----------------------------------------------------------- |
+  |      `announce`      | Announce Badge                                              |
+  |    `networkSpeed`    | Network speed                                               |
+  |   `outboundModeV2`   | Proxy mode (new type)                                       |
+  |    `outboundMode`    | Proxy mode (old type)                                       |
+  |    `trafficUsage`    | Traffic usage                                               |
+  |  `networkDetection`  | Determining location and IP                                 |
+  |     `tunButton`      | TUN button (Desktop only)                                   |
+  |     `vpnButton`      | VPN button (Android only)                                   |
+  | `systemProxyButton`  | System Proxy Button (Desktop only)                          |
+  |     `intranetIp`     | Local IP-Address                                            |
+  |     `memoryInfo`     | Memory usage                                                |
+  |      `metainfo`      | Profile information                                         |
+  | `changeServerButton` | Change server button                                        |
+  |    `serviceInfo`     | Service information (only with header flclashx-servicename) |
 
 Usage:
 
@@ -115,6 +116,14 @@ Usage:
 
 ```bash
     flclashx-denywidgets: true
+```
+
+- flclashx-servicename: The name of the service for the serviceInfo widget.
+
+Usage:
+
+```bash
+    flclashx-servicename: FlClashX
 ```
 
 ## Application Usage

@@ -220,6 +220,7 @@ mixin _$Profile {
   String? get currentGroupName => throw _privateConstructorUsedError;
   String? get announceText => throw _privateConstructorUsedError;
   String? get supportUrl => throw _privateConstructorUsedError;
+  String? get serviceName => throw _privateConstructorUsedError;
   String? get dashboardLayout => throw _privateConstructorUsedError;
   String? get proxiesView => throw _privateConstructorUsedError;
   String? get customBehavior => throw _privateConstructorUsedError;
@@ -251,6 +252,7 @@ abstract class $ProfileCopyWith<$Res> {
       String? currentGroupName,
       String? announceText,
       String? supportUrl,
+      String? serviceName,
       String? dashboardLayout,
       String? proxiesView,
       String? customBehavior,
@@ -287,6 +289,7 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
     Object? currentGroupName = freezed,
     Object? announceText = freezed,
     Object? supportUrl = freezed,
+    Object? serviceName = freezed,
     Object? dashboardLayout = freezed,
     Object? proxiesView = freezed,
     Object? customBehavior = freezed,
@@ -321,6 +324,10 @@ class _$ProfileCopyWithImpl<$Res, $Val extends Profile>
       supportUrl: freezed == supportUrl
           ? _value.supportUrl
           : supportUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serviceName: freezed == serviceName
+          ? _value.serviceName
+          : serviceName // ignore: cast_nullable_to_non_nullable
               as String?,
       dashboardLayout: freezed == dashboardLayout
           ? _value.dashboardLayout
@@ -411,6 +418,7 @@ abstract class _$$ProfileImplCopyWith<$Res> implements $ProfileCopyWith<$Res> {
       String? currentGroupName,
       String? announceText,
       String? supportUrl,
+      String? serviceName,
       String? dashboardLayout,
       String? proxiesView,
       String? customBehavior,
@@ -447,6 +455,7 @@ class __$$ProfileImplCopyWithImpl<$Res>
     Object? currentGroupName = freezed,
     Object? announceText = freezed,
     Object? supportUrl = freezed,
+    Object? serviceName = freezed,
     Object? dashboardLayout = freezed,
     Object? proxiesView = freezed,
     Object? customBehavior = freezed,
@@ -481,6 +490,10 @@ class __$$ProfileImplCopyWithImpl<$Res>
       supportUrl: freezed == supportUrl
           ? _value.supportUrl
           : supportUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      serviceName: freezed == serviceName
+          ? _value.serviceName
+          : serviceName // ignore: cast_nullable_to_non_nullable
               as String?,
       dashboardLayout: freezed == dashboardLayout
           ? _value.dashboardLayout
@@ -547,6 +560,7 @@ class _$ProfileImpl implements _Profile {
       this.currentGroupName,
       this.announceText,
       this.supportUrl,
+      this.serviceName,
       this.dashboardLayout,
       this.proxiesView,
       this.customBehavior,
@@ -577,6 +591,8 @@ class _$ProfileImpl implements _Profile {
   final String? announceText;
   @override
   final String? supportUrl;
+  @override
+  final String? serviceName;
   @override
   final String? dashboardLayout;
   @override
@@ -624,7 +640,7 @@ class _$ProfileImpl implements _Profile {
 
   @override
   String toString() {
-    return 'Profile(id: $id, label: $label, currentGroupName: $currentGroupName, announceText: $announceText, supportUrl: $supportUrl, dashboardLayout: $dashboardLayout, proxiesView: $proxiesView, customBehavior: $customBehavior, url: $url, lastUpdateDate: $lastUpdateDate, autoUpdateDuration: $autoUpdateDuration, subscriptionInfo: $subscriptionInfo, autoUpdate: $autoUpdate, selectedMap: $selectedMap, unfoldSet: $unfoldSet, overrideData: $overrideData, isUpdating: $isUpdating, denyWidgetEditing: $denyWidgetEditing)';
+    return 'Profile(id: $id, label: $label, currentGroupName: $currentGroupName, announceText: $announceText, supportUrl: $supportUrl, serviceName: $serviceName, dashboardLayout: $dashboardLayout, proxiesView: $proxiesView, customBehavior: $customBehavior, url: $url, lastUpdateDate: $lastUpdateDate, autoUpdateDuration: $autoUpdateDuration, subscriptionInfo: $subscriptionInfo, autoUpdate: $autoUpdate, selectedMap: $selectedMap, unfoldSet: $unfoldSet, overrideData: $overrideData, isUpdating: $isUpdating, denyWidgetEditing: $denyWidgetEditing)';
   }
 
   @override
@@ -640,6 +656,8 @@ class _$ProfileImpl implements _Profile {
                 other.announceText == announceText) &&
             (identical(other.supportUrl, supportUrl) ||
                 other.supportUrl == supportUrl) &&
+            (identical(other.serviceName, serviceName) ||
+                other.serviceName == serviceName) &&
             (identical(other.dashboardLayout, dashboardLayout) ||
                 other.dashboardLayout == dashboardLayout) &&
             (identical(other.proxiesView, proxiesView) ||
@@ -669,26 +687,28 @@ class _$ProfileImpl implements _Profile {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      label,
-      currentGroupName,
-      announceText,
-      supportUrl,
-      dashboardLayout,
-      proxiesView,
-      customBehavior,
-      url,
-      lastUpdateDate,
-      autoUpdateDuration,
-      subscriptionInfo,
-      autoUpdate,
-      const DeepCollectionEquality().hash(_selectedMap),
-      const DeepCollectionEquality().hash(_unfoldSet),
-      overrideData,
-      isUpdating,
-      denyWidgetEditing);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        id,
+        label,
+        currentGroupName,
+        announceText,
+        supportUrl,
+        serviceName,
+        dashboardLayout,
+        proxiesView,
+        customBehavior,
+        url,
+        lastUpdateDate,
+        autoUpdateDuration,
+        subscriptionInfo,
+        autoUpdate,
+        const DeepCollectionEquality().hash(_selectedMap),
+        const DeepCollectionEquality().hash(_unfoldSet),
+        overrideData,
+        isUpdating,
+        denyWidgetEditing
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -711,6 +731,7 @@ abstract class _Profile implements Profile {
       final String? currentGroupName,
       final String? announceText,
       final String? supportUrl,
+      final String? serviceName,
       final String? dashboardLayout,
       final String? proxiesView,
       final String? customBehavior,
@@ -738,6 +759,8 @@ abstract class _Profile implements Profile {
   String? get announceText;
   @override
   String? get supportUrl;
+  @override
+  String? get serviceName;
   @override
   String? get dashboardLayout;
   @override

@@ -407,6 +407,12 @@ enum DashboardWidget {
       crossAxisCellCount: 8,
       child: ChangeServerButton(),
     ),
+  ),
+  serviceInfo(
+    GridItem(
+      crossAxisCellCount: 8,
+      child: ServiceInfoWidget(),
+    ),
   );
 
   final GridItem widget;

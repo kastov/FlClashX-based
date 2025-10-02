@@ -55,21 +55,22 @@
 
 - flclashx-widgets: выстраивает виджеты в порядке, полученным с подписки
 
-|       Значение       | Виджет                                    |
-| :------------------: | ----------------------------------------- |
-|      `announce`      | Анонсы                                    |
-|    `networkSpeed`    | Скорость сети                             |
-|   `outboundModeV2`   | Режим работы прокси (новый вид)           |
-|    `outboundMode`    | Режим работы прокси (старый вид)          |
-|    `trafficUsage`    | Использование трафика                     |
-|  `networkDetection`  | Определение локации и IP                  |
-|     `tunButton`      | Кнопка TUN (только Desktop)               |
-|     `vpnButton`      | Кнопка VPN (только Android)               |
-| `systemProxyButton`  | Кнопка системного прокси (только Desktop) |
-|     `intranetIp`     | Локальный IP-адрес                        |
-|     `memoryInfo`     | Использование памяти                      |
-|      `metainfo`      | Информация о подписке                     |
-| `changeServerButton` | Кнопка смены сервера                      |
+|       Значение       | Виджет                                                      |
+| :------------------: | ----------------------------------------------------------- |
+|      `announce`      | Анонсы                                                      |
+|    `networkSpeed`    | Скорость сети                                               |
+|   `outboundModeV2`   | Режим работы прокси (новый вид)                             |
+|    `outboundMode`    | Режим работы прокси (старый вид)                            |
+|    `trafficUsage`    | Использование трафика                                       |
+|  `networkDetection`  | Определение локации и IP                                    |
+|     `tunButton`      | Кнопка TUN (только Desktop)                                 |
+|     `vpnButton`      | Кнопка VPN (только Android)                                 |
+| `systemProxyButton`  | Кнопка системного прокси (только Desktop)                   |
+|     `intranetIp`     | Локальный IP-адрес                                          |
+|     `memoryInfo`     | Использование памяти                                        |
+|      `metainfo`      | Информация о подписке                                       |
+| `changeServerButton` | Кнопка смены сервера                                        |
+|    `serviceInfo`     | Информация о сервисе (только с header flclashx-servicename) |
 
 Использование:
 
@@ -112,6 +113,14 @@ flclashx-widgets: announce,metainfo,outboundModeV2,networkDetection
 
 ```bash
     flclashx-denywidgets: true
+```
+
+- flclashx-servicename: The name of the service for the serviceInfo widget.
+
+Usage:
+
+```bash
+    flclashx-servicename: FlClashX
 ```
 
 ## Использование
