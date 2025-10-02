@@ -855,45 +855,79 @@ class AppController {
             final value = parts[1].trim().toLowerCase();
             switch (key) {
               case 'type':
-                if (value == 'list')
-                  newState = newState.copyWith(type: ProxiesType.list);
-                if (value == 'tab')
-                  newState = newState.copyWith(type: ProxiesType.tab);
+                switch (value) {
+                  case 'list':
+                    newState = newState.copyWith(type: ProxiesType.list);
+                    break;
+                  case 'tab':
+                    newState = newState.copyWith(type: ProxiesType.tab);
+                    break;
+                }
                 break;
               case 'sort':
-                if (value == 'none')
-                  newState = newState.copyWith(sortType: ProxiesSortType.none);
-                if (value == 'delay')
-                  newState = newState.copyWith(sortType: ProxiesSortType.delay);
-                if (value == 'name')
-                  newState = newState.copyWith(sortType: ProxiesSortType.name);
+                switch (value) {
+                  case 'none':
+                    newState =
+                        newState.copyWith(sortType: ProxiesSortType.none);
+                    break;
+                  case 'delay':
+                    newState =
+                        newState.copyWith(sortType: ProxiesSortType.delay);
+                    break;
+                  case 'name':
+                    newState =
+                        newState.copyWith(sortType: ProxiesSortType.name);
+                    break;
+                }
                 break;
               case 'layout':
-                if (value == 'loose')
-                  newState = newState.copyWith(layout: ProxiesLayout.loose);
-                if (value == 'standard')
-                  newState = newState.copyWith(layout: ProxiesLayout.standard);
-                if (value == 'tight')
-                  newState = newState.copyWith(layout: ProxiesLayout.tight);
+                switch (value) {
+                  case 'loose':
+                    newState = newState.copyWith(layout: ProxiesLayout.loose);
+                    break;
+                  case 'standard':
+                    newState =
+                        newState.copyWith(layout: ProxiesLayout.standard);
+                    break;
+                  case 'tight':
+                    newState = newState.copyWith(layout: ProxiesLayout.tight);
+                    break;
+                }
                 break;
               case 'icon':
-                if (value == 'standard')
-                  newState =
-                      newState.copyWith(iconStyle: ProxiesIconStyle.standard);
-                if (value == 'none')
-                  newState =
-                      newState.copyWith(iconStyle: ProxiesIconStyle.none);
-                if (value == 'icon')
-                  newState =
-                      newState.copyWith(iconStyle: ProxiesIconStyle.icon);
+                switch (value) {
+                  case 'standard':
+                    newState =
+                        newState.copyWith(iconStyle: ProxiesIconStyle.standard);
+                    break;
+                  case 'none':
+                    newState =
+                        newState.copyWith(iconStyle: ProxiesIconStyle.none);
+                    break;
+                  case 'icon':
+                    newState =
+                        newState.copyWith(iconStyle: ProxiesIconStyle.icon);
+                    break;
+                }
                 break;
               case 'card':
-                if (value == 'expand')
-                  newState = newState.copyWith(cardType: ProxyCardType.expand);
-                if (value == 'shrink')
-                  newState = newState.copyWith(cardType: ProxyCardType.shrink);
-                if (value == 'min')
-                  newState = newState.copyWith(cardType: ProxyCardType.min);
+                switch (value) {
+                  case 'expand':
+                    newState =
+                        newState.copyWith(cardType: ProxyCardType.expand);
+                    break;
+                  case 'shrink':
+                    newState =
+                        newState.copyWith(cardType: ProxyCardType.shrink);
+                    break;
+                  case 'min':
+                    newState = newState.copyWith(cardType: ProxyCardType.min);
+                    break;
+                  case 'oneline':
+                    newState =
+                        newState.copyWith(cardType: ProxyCardType.oneline);
+                    break;
+                }
                 break;
             }
           }
