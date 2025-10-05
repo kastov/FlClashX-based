@@ -15,6 +15,11 @@ macLocal:
 	rm -rf build
 	dart ./setup.dart macos --arch arm64 --env stable
 
+macLocal_amd64:
+	rm -rf dist
+	rm -rf build
+	dart ./setup.dart macos --arch amd64 --env stable
+
 
 notarizeLocal:
 	DMG_FILE=$$(ls dist/FlClashX-*.dmg) && \
